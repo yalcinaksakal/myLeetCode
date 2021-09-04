@@ -18,7 +18,7 @@
       margin-left: 5px;
     }
     &:hover {
-      color: rgb(186, 135, 41);
+      transform: scale(1.05);
     }
   }
   .search {
@@ -53,10 +53,6 @@
     margin-left: auto;
     display: flex;
     align-items: center;
-    li {
-      position: relative;
-      color: black;
-    }
   }
   @media (max-width: 500px) {
     align-items: flex-start;

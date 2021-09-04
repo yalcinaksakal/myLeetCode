@@ -2,16 +2,14 @@ import type { NextPage } from "next";
 
 import styles from "../styles/Home.module.scss";
 
-const Home: NextPage = () => {
+const Profile: NextPage = () => {
   return (
     <>
       <main className={styles.main}>
-        <h1>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        <h1 className={styles.title}>Your Profile</h1>
       </main>
     </>
   );
 };
 
-export default Home;
+export default Profile;

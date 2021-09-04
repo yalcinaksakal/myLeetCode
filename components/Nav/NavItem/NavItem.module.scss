@@ -1,29 +1,58 @@
 .item {
   cursor: pointer;
   transition: all ease-out 0.1s;
-  fill: rgb(186, 135, 41);
+  fill: black;
   color: rgb(186, 135, 41);
   width: 25px;
   height: 25px;
   padding-top: 5px;
+  margin-left: 7px;
   display: flex;
   align-items: center;
   justify-content: center;
   outline: none;
 
-  &:hover,
-  .active {
+  &:hover {
     fill: dodgerblue;
+    transform: scale(1.2);
   }
-
-  img {
-    display: block;
-    border-radius: 50%;
-    transform: translateY(-2px);
-    transition: all ease-out 0.2s;
+  .navItemDetail {
+    position: fixed;
+    width: max-content;
+    top: -10px;
+    left: 8px;
+    transform: translateX(-45%);
+    color: rgb(196, 129, 5);
+    animation: openModal 0.2s ease-out forwards;
+    font-size: 8px;
+    @keyframes openModal {
+      0% {
+        opacity: 0;
+        top: -40px;
+      }
+      25% {
+        opacity: 0.1;
+        top: -20px;
+      }
+      50% {
+        opacity: 0.2;
+        top: -17px;
+      }
+      75% {
+        opacity: 0.4;
+        top: -15px;
+      }
+      100% {
+        opacity: 1;
+        top: -10px;
+      }
+    }
   }
 }
-
+.active {
+  fill: dodgerblue;
+  transform: scale(1.2);
+}
 .red {
   fill: #cb2626;
 }

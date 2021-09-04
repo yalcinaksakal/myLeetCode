@@ -1,32 +1,36 @@
 import styles from "./NavList.module.scss";
+
 import Link from "next/link";
 import NavItem from "./NavItem/NavItem";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { SVGS } from "../../svg/svg";
+
 const NavList: React.FC = () => {
+  const { pathname } = useRouter();
+
   return (
     <div className={styles.nav}>
-      <div className={styles.logo}>
-        <Image src="/favicon.png" alt="ya's code" width={25} height={20} />
-        <span>YA&apos;s LeetCode Solutions</span>
-      </div>
+      <Link href="/" passHref>
+        <div className={styles.logo}>
+          <Image src="/favicon.png" alt="ya's code" width={25} height={20} />
+          <span>YA&apos;s LeetCode Solutions</span>
+        </div>
+      </Link>
       <input className={styles.search} type="search" placeholder="Search" />
       <ul className={styles.list}>
-        <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
-        <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
-        <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
-        <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
-        {/* {navList.map((listItem, index) => {
-        const item =
-          listItem === "login" && loginState.isLoading ? "loading" : listItem;
-        return (
-          <NavItem
-            key={item}
-            item={item}
-            isLast={index === navList.length - 1}
-            isBeforeLast={index === navList.length - 2}
-          />
-        );
-      })} */}
+        {Object.values(SVGS).map((listItem, index) => {
+          return (
+            <NavItem
+              key={index}
+              item={listItem.name}
+              isPageActive={pathname === `/${listItem.path}`}
+              svg={listItem.svg}
+              desc={listItem.description}
+              path={`/${listItem.path}`}
+            />
+          );
+        })}
       </ul>
     </div>
   );
