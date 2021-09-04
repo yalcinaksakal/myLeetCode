@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           rel="noopener noreferrer"
         >
           <Image src="/github.png" alt="ya's code" width={30} height={30} />
-          <span>YA's github page</span>
+          <span>YA&apos;s github page</span>
         </a>
       </footer>
     </>

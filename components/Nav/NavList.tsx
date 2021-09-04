@@ -7,9 +7,13 @@ const NavList: React.FC = () => {
     <div className={styles.nav}>
       <div className={styles.logo}>
         <Image src="/favicon.png" alt="ya's code" width={25} height={20} />
-        <span>YA's LeetCode Solutions</span>
+        <span>YA&apos;s LeetCode Solutions</span>
       </div>
+      <input className={styles.search} type="search" placeholder="Search" />
       <ul className={styles.list}>
+        <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
+        <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
+        <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
         <NavItem item="signInOut" isBeforeLast={false} isLast={true} />
         {/* {navList.map((listItem, index) => {
         const item =

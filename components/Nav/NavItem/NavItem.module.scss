@@ -1,8 +1,8 @@
 .item {
-  margin-left: 1rem;
   cursor: pointer;
-  transition: all ease-out 0.2s;
-  fill: black;
+  transition: all ease-out 0.1s;
+  fill: rgb(186, 135, 41);
+  color: rgb(186, 135, 41);
   width: 25px;
   height: 25px;
   padding-top: 5px;
@@ -10,6 +10,18 @@
   align-items: center;
   justify-content: center;
   outline: none;
+
+  &:hover,
+  .active {
+    fill: dodgerblue;
+  }
+
+  img {
+    display: block;
+    border-radius: 50%;
+    transform: translateY(-2px);
+    transition: all ease-out 0.2s;
+  }
 }
 
 .red {
@@ -20,22 +32,9 @@
   fill: red !important;
 }
 
-.item:hover,
-.item.active {
-  fill: dodgerblue;
-  transform: scale(1.1);
-}
-
-.item img {
-  display: block;
-  border-radius: 50%;
-  transform: translateY(-2px);
-  transition: all ease-out 0.2s;
-}
-
-@media (max-width: 350px) {
-  .item img {
-    width: 20px;
-    height: 20px;
-  }
-}
+// @media (max-width: 350px) {
+//   .item img {
+//     width: 20px;
+//     height: 20px;
+//   }
+// }

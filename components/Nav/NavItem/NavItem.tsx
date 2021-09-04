@@ -10,7 +10,8 @@ const NavItem: React.FC<{
   const [showDetails, setShowDetails] = useState(false);
   return (
     <li
-      // className={`${styles.item} ${isPageActive ? styles.active : ""} ${
+      className={styles.item}
+      // ${isPageActive ? styles.active : ""} ${
       //   item === "logout" ? styles.red : ""
       // }`}
       onMouseEnter={() => setShowDetails(true)}
