@@ -17,11 +17,10 @@ const Editor: NextPage = () => {
       setPageWidth(w);
     };
     window.addEventListener("resize", handleResize);
+    const w = window.innerWidth;
+    setPageWidth(w);
 
-    setPageWidth(window.innerWidth);
-
-    const width =
-      pageWidth <= 600 ? "100%" : Math.floor(pageWidth / 2) - 5 + "px";
+    const width = w <= 500 ? "100%" : Math.floor(pageWidth / 2) - 5 + "px";
     setWidths({ prblm: width, edtr: width });
     return () => window.removeEventListener("resize", handleResize);
   }, []);
@@ -46,7 +45,12 @@ const Editor: NextPage = () => {
         if (isResizing.current) resize(e.pageX);
       }}
     >
-      <div style={{ width: widths.prblm, height: "100%" }}>
+      <div
+        style={{
+          width: widths.prblm,
+          height: pageWidth > 500 ? "100%" : "240px",
+        }}
+      >
         <Problem />
       </div>
 
@@ -58,7 +62,12 @@ const Editor: NextPage = () => {
         <Resizer />
       </div>
 
-      <div style={{ width: widths.edtr, height: "100%" }}>
+      <div
+        style={{
+          width: widths.edtr,
+          height: pageWidth > 500 ? "100%" : "calc(100vh - 9.5rem - 260px)",
+        }}
+      >
         <CodeEditor />
       </div>
     </div>
