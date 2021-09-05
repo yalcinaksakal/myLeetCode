@@ -15,13 +15,16 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 import styles from "./Ace.module.scss";
 import Modes from "./Modes/Modes";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const Ace: React.FC = () => {
   const [lang, setLang] = useState("javascript");
   const [theme, setTheme] = useState("tomorrow_night_bright");
+  const editorInstance = useRef(null);
   const themeHandler = theme => setTheme(theme);
   const langHandler = lang => setLang(lang);
+  if (editorInstance.current) editorInstance.current.resize();
+
   return (
     <div className={styles.editor}>
       <Modes onThemeChange={themeHandler} onLangChange={langHandler} />
@@ -38,12 +41,7 @@ const Ace: React.FC = () => {
         //   enableBasicAutocompletion
         enableLiveAutocompletion
         enableSnippets
-        onLoad={editorInstance =>
-          (editorInstance.container.style.resize = "both")
-        }
-        // // mouseup = css resize end
-        // document.addEventListener("mouseup", e => (
-        //   editorInstance.resize()
+        onLoad={instance => (editorInstance.current = instance)}
 
         //   annotations={[{ row: 0, column: 2, type: "error", text: "Some error." }]}
       />
