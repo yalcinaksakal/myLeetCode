@@ -7,6 +7,7 @@
   align-items: center;
   padding: 1rem;
   z-index: 100;
+  user-select: none;
   .logo {
     cursor: pointer;
     display: flex;
@@ -59,53 +60,3 @@
     height: 6rem;
   }
 }
-
-// .menu {
-//   display: flex;
-// }
-
-// .header .login {
-//   cursor: pointer;
-//   transition: all ease-out 0.2s;
-// }
-// .logo:hover,
-// .login:hover {
-//   color: dodgerblue;
-// }
-// .login:hover {
-//   transform: scale(1.1);
-// }
-// @media (max-width: 500px) {
-//   /* .header {
-//       flex-direction: column;
-//       justify-content: space-around;
-//       height: 5rem;
-//     } */
-//   .logo {
-//     padding: 0;
-//   }
-//   .menu {
-//     flex-direction: column-reverse;
-//   }
-//   .search {
-//     transform: translateY(5px);
-//   }
-//   .header ul {
-//     width: 70vw;
-//     margin: 0;
-//   }
-// }
-// @media (min-width: 530px) and (max-width: 600px) {
-//   .search {
-//     width: 200px;
-//     margin-bottom: 0;
-//   }
-// }
-// @media (min-width: 600px) {
-//   .search {
-//     width: 260px;
-//     margin-bottom: 0;
-//   }
-// }
-
-// }

@@ -3,22 +3,14 @@ import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-tomorrow_night_bright";
 import "ace-builds/src-noconflict/ext-language_tools";
 import "ace-builds/src-noconflict/snippets/javascript";
+
+import styles from "./Ace.module.scss";
+
 const Ace: React.FC = () => {
   return (
-    <div
-      style={{
-        width: "50vw",
-        height: "80vh",
-        minWidth: "400px",
-        margin: "5px",
-        marginLeft: "auto",
-        display: "flex",
-        alignItems: "center",
-        borderLeft: "1px solid orange",
-        paddingLeft: "5px",
-      }}
-    >
+    <div className={styles.editor}>
       <AceEditor
+        placeholder="// Paste or write your code here (Mode:JavaScript)"
         width="100%"
         height="100%"
         wrapEnabled={true}
