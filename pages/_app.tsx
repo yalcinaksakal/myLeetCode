@@ -18,7 +18,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <NavList />
       <Component {...pageProps} />
-      <footer className={styles.footer}>
+      <div className={styles.footer}>
         <a
           href="https://github.com/yalcinaksakal"
           target="_blank"
@@ -27,7 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           <Image src="/github.png" alt="ya's code" width={30} height={30} />
           <span>YA&apos;s github page</span>
         </a>
-      </footer>
+      </div>
     </>
   );
 }

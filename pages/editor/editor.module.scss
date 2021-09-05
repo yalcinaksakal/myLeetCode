@@ -4,7 +4,15 @@
   margin: 5px 0;
   display: flex;
   align-items: center;
+  .resizer {
+    height: 100%;
+  }
   @media (max-width: 500px) {
     height: calc(100vh - 9.5rem);
+    flex-direction: column;
+    .resizer {
+      pointer-events: none;
+      height: 10px;
+    }
   }
 }

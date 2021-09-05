@@ -9,22 +9,28 @@ const CodeEditor = dynamic(import("../../components/Ace/Ace"), { ssr: false });
 
 const Editor: NextPage = () => {
   const [widths, setWidths] = useState({ prblm: "40%", edtr: "40%" });
-  const pageWidth = useRef(5000);
+  const [pageWidth, setPageWidth] = useState(5000);
   const isResizing = useRef(false);
   useEffect(() => {
-    pageWidth.current = window.innerWidth;
-    const width = Math.floor(pageWidth.current / 2) - 5 + "px";
+    const handleResize = () => {
+      setPageWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+
+    setPageWidth(window.innerWidth);
+    const width =
+      pageWidth <= 600 ? "100%" : Math.floor(pageWidth / 2) - 5 + "px";
     setWidths({ prblm: width, edtr: width });
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const resize = pageX => {
-    console.log(pageX);
-    if (pageX < 150 || pageX > pageWidth.current - 150) {
-      pageX = pageX < 150 ? 180 : pageWidth.current;
-      pageX = pageX > pageWidth.current - 150 ? pageWidth.current - 180 : pageX;
+    if (pageX < 150 || pageX > pageWidth - 150) {
+      pageX = pageX < 150 ? 180 : pageWidth;
+      pageX = pageX > pageWidth - 150 ? pageWidth - 180 : pageX;
       isResizing.current = false;
     }
-    const edtr = `${pageWidth.current - pageX - (pageX ? 20 : 0)}px`;
+    const edtr = `${pageWidth - pageX - (pageX ? 20 : 0)}px`;
     const prblm = `${pageX - 5}px`;
     setWidths({
       prblm,
@@ -37,18 +43,19 @@ const Editor: NextPage = () => {
       onMouseMove={e => {
         if (isResizing.current) resize(e.pageX);
       }}
-      // onMouseUp={() => (isResizing.current = false)}
     >
       <div style={{ width: widths.prblm, height: "100%" }}>
         <Problem />
       </div>
+
       <div
+        className={styles.resizer}
         onMouseDown={() => (isResizing.current = true)}
         onMouseUp={() => (isResizing.current = false)}
-        style={{ height: "100%" }}
       >
         <Resizer />
       </div>
+
       <div style={{ width: widths.edtr, height: "100%" }}>
         <CodeEditor />
       </div>

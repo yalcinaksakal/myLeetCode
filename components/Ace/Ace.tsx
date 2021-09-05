@@ -10,7 +10,7 @@ const Ace: React.FC = () => {
   return (
     <div className={styles.editor}>
       <AceEditor
-        placeholder="// Paste or write your code here (Mode:JavaScript)"
+        placeholder="// Paste or write your code"
         width="100%"
         height="100%"
         wrapEnabled={true}
