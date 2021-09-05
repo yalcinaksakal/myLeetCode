@@ -28,6 +28,7 @@ const NavList: React.FC = () => {
               svg={listItem.svg}
               desc={listItem.description}
               path={`/${listItem.path}`}
+              isLoginRequired={listItem.isLoginRequired}
             />
           );
         })}

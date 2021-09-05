@@ -16,6 +16,7 @@
     fill: dodgerblue;
     transform: scale(1.2);
   }
+
   .navItemDetail {
     position: fixed;
     width: max-content;
@@ -53,17 +54,20 @@
   fill: dodgerblue;
   transform: scale(1.2);
 }
-.red {
-  fill: #cb2626;
-}
+.disabled {
+  fill: rgb(164, 164, 164);
+  .navItemDetail {
+    color: rgb(164, 164, 164);
+  }
+  &:active {
+    pointer-events: none;
+  }
 
+  &:hover {
+    fill: rgb(164, 164, 164);
+    transform: scale(1);
+  }
+}
 .red:hover {
-  fill: red !important;
+  fill: red;
 }
-
-// @media (max-width: 350px) {
-//   .item img {
-//     width: 20px;
-//     height: 20px;
-//   }
-// }

@@ -9,7 +9,10 @@ const NavItem: React.FC<{
   svg: any;
   path: string;
   desc: string;
-}> = ({ item, isPageActive, svg, path, desc }) => {
+  isLoginRequired: boolean;
+}> = ({ item, isPageActive, svg, path, desc, isLoginRequired }) => {
+  const isLoggedIn = true;
+  const isDisabled = isLoginRequired && !isLoggedIn;
   const [showDetails, setShowDetails] = useState(false);
   const svgJSX = (
     <svg width="25" height="25" viewBox="0 0 25 25" onClick={() => {}}>
@@ -20,7 +23,7 @@ const NavItem: React.FC<{
     <li
       className={`${styles.item} ${isPageActive ? styles.active : ""} ${
         item === "logout" ? styles.red : ""
-      }`}
+      } ${isDisabled ? styles.disabled : ""}`}
       onMouseEnter={() => setShowDetails(true)}
       onMouseLeave={() => setShowDetails(false)}
     >
@@ -29,11 +32,17 @@ const NavItem: React.FC<{
           {svgJSX}
         </Link>
       ) : (
-        svgJSX
+        <div className={isLoggedIn ? styles.red : ""}>{svgJSX}</div>
       )}
 
       {showDetails && !isPageActive && (
-        <div className={styles.navItemDetail}>{desc}</div>
+        <div className={styles.navItemDetail}>
+          {isDisabled
+            ? "Please Sign In"
+            : item === "signInOut" && isLoggedIn
+            ? "Sign Out"
+            : desc}
+        </div>
       )}
     </li>
   );

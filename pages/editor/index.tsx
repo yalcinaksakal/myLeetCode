@@ -13,11 +13,13 @@ const Editor: NextPage = () => {
   const isResizing = useRef(false);
   useEffect(() => {
     const handleResize = () => {
-      setPageWidth(window.innerWidth);
+      const w = window.innerWidth;
+      setPageWidth(w);
     };
     window.addEventListener("resize", handleResize);
 
     setPageWidth(window.innerWidth);
+
     const width =
       pageWidth <= 600 ? "100%" : Math.floor(pageWidth / 2) - 5 + "px";
     setWidths({ prblm: width, edtr: width });
