@@ -1,0 +1,24 @@
+.modes {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  color: dodgerblue;
+  opacity: 20%;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: all ease 0.5s;
+  user-select: none;
+  & > * {
+    margin-top: 3px;
+    font-size: 12px;
+    outline: none;
+  }
+  &:hover {
+    opacity: 100%;
+  }
+  @media (max-width: 500px) {
+    right: 20px;
+  }
+}
