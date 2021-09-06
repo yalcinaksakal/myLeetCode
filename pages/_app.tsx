@@ -4,8 +4,18 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import NavList from "../components/Nav/NavList";
 import Head from "next/head";
+import { auth } from "../utils/firebase.utils";
+import { useEffect, useState } from "react";
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+      setUser(user);
+      console.log(user);
+    });
+    return () => unsubscribeFromAuth();
+  }, []);
   return (
     <>
       <Head>

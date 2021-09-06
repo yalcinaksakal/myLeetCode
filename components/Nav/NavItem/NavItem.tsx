@@ -2,6 +2,7 @@ import styles from "./NavItem.module.scss";
 
 import { useState } from "react";
 import Link from "next/link";
+import { signInWithGoogle } from "../../../utils/firebase.utils";
 
 const NavItem: React.FC<{
   item: string;
@@ -15,7 +16,7 @@ const NavItem: React.FC<{
   const isDisabled = isLoginRequired && !isLoggedIn;
   const [showDetails, setShowDetails] = useState(false);
   const svgJSX = (
-    <svg width="25" height="25" viewBox="0 0 25 25" onClick={() => {}}>
+    <svg width="25" height="25" viewBox="0 0 25 25">
       {svg}
     </svg>
   );
@@ -32,7 +33,12 @@ const NavItem: React.FC<{
           {svgJSX}
         </Link>
       ) : (
-        <div className={isLoggedIn ? styles.red : ""}>{svgJSX}</div>
+        <div
+          className={isLoggedIn ? styles.red : ""}
+          onClick={signInWithGoogle}
+        >
+          {svgJSX}
+        </div>
       )}
 
       {showDetails && !isPageActive && (
