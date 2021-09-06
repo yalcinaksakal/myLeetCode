@@ -5,13 +5,18 @@ import styles from "../styles/Home.module.scss";
 import NavList from "../components/Nav/NavList";
 import Head from "next/head";
 import { auth } from "../utils/firebase.utils";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Provider, useDispatch } from "react-redux";
 import store from "../store";
 import { loginActions } from "../store/login-slice";
+import { useRouter } from "next/router";
+import Spinner from "../components/Spinner/Spinner";
 
 function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
+  const [isRouting, setIsRouting] = useState(false);
+  const { events } = useRouter();
+  //sign in
   useEffect(() => {
     dispatch(loginActions.setLoggingIn(true));
     const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
@@ -22,6 +27,21 @@ function App({ Component, pageProps }: AppProps) {
     });
     return () => unsubscribeFromAuth();
   }, []);
+
+  // while navigating between pages show spinner
+  useEffect(() => {
+    const start = () => setIsRouting(true);
+    const end = () => setIsRouting(false);
+    events.on("routeChangeStart", start);
+    events.on("routeChangeComplete", end);
+    events.on("routeChangeError", end);
+    return () => {
+      events.off("routeChangeStart", start);
+      events.off("routeChangeComplete", end);
+      events.off("routeChangeError", end);
+    };
+  }, [events]);
+
   return (
     <>
       <Head>
@@ -33,7 +53,7 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <NavList />
-      <Component {...pageProps} />
+      {isRouting ? <Spinner /> : <Component {...pageProps} />}
       <div className={styles.footer}>
         <a
           href="https://github.com/yalcinaksakal"

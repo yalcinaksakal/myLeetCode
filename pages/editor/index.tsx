@@ -65,7 +65,8 @@ const Editor: NextPage = () => {
       <div
         style={{
           width: widths.edtr,
-          height: pageWidth > 500 ? "100%" : "calc(100vh - 9.5rem - 260px)",
+          height: "100%",
+          // height: pageWidth > 500 ? "100%" : "calc(100vh - 9.5rem - 260px)",
         }}
       >
         <CodeEditor />
