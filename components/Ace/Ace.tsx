@@ -21,8 +21,9 @@ const Ace: React.FC = () => {
   const [lang, setLang] = useState("javascript");
   const [theme, setTheme] = useState("tomorrow_night_bright");
   const editorInstance = useRef(null);
-  const themeHandler = theme => setTheme(theme);
-  const langHandler = lang => setLang(lang);
+
+  const themeHandler = (theme: string): void => setTheme(theme);
+  const langHandler = (lang: string): void => setLang(lang);
   if (editorInstance.current) editorInstance.current.resize();
 
   return (
