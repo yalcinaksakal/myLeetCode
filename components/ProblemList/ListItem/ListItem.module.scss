@@ -1,16 +1,54 @@
 .item {
   margin: 5px 0;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-  padding: 10px;
-  background-color: var(--backColor);
+  padding: 5px 10px;
+  background: var(--backColor);
   transition: transform 0.2s ease-out;
   cursor: pointer;
   border-radius: 5px;
   font-size: 13px;
+  display: flex;
 
+  .no {
+    width: 30px;
+  }
+  .difficulty {
+    width: 30px;
+    color: var(--color);
+  }
+  .name {
+    width: calc(100% - 100px);
+    margin: 0 10px;
+    border-left: 1px solid gray;
+    border-right: 1px solid gray;
+    padding: 0 5px;
+  }
   &:hover {
-    transform: translateX(-5px);
+    transform: translateX(-1px);
     background-color: #9d9474;
     color: whitesmoke;
+  }
+}
+.heading {
+  font-size: 10px;
+  color: rgba(29, 101, 174, 0.612);
+  padding: 3px 10px;
+  font-weight: bolder;
+  cursor: default;
+  display: flex;
+  border-bottom: 1px dashed rgba(29, 101, 174, 0.612);
+  .no {
+    width: 30px;
+    font-size: 10px;
+  }
+  .difficulty {
+    width: 30px;
+  }
+  .name {
+    width: calc(100% - 100px);
+    margin: 0 10px;
+    border-left: 1px solid rgba(29, 101, 174, 0.612);
+    border-right: 1px solid rgba(29, 101, 174, 0.612);
+    padding: 0 5px;
   }
 }

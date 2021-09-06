@@ -13,9 +13,9 @@ const Home: NextPage = () => {
       difficulty: "Medium",
     },
     {
-      no: 4,
+      no: 2000,
       name: "Longest Substring Without Repeating Longest Substring Without Repeating Characters",
-      difficulty: "Medium",
+      difficulty: "Difficult",
     },
   ];
   return <ProblemList list={list} />;
