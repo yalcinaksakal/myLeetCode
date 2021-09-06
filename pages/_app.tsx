@@ -5,13 +5,19 @@ import styles from "../styles/Home.module.scss";
 import NavList from "../components/Nav/NavList";
 import Head from "next/head";
 import { auth } from "../utils/firebase.utils";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Provider, useDispatch } from "react-redux";
+import store from "../store";
+import { loginActions } from "../store/login-slice";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const [user, setUser] = useState(null);
+function App({ Component, pageProps }: AppProps) {
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(loginActions.setLoggingIn(true));
     const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      setUser(user);
+      //user
+
+      dispatch(loginActions.setLoggingIn(false));
       console.log(user);
     });
     return () => unsubscribeFromAuth();
@@ -41,4 +47,12 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
-export default MyApp;
+function MyLeetCode(props: AppProps) {
+  return (
+    <Provider store={store}>
+      <App {...props} />
+    </Provider>
+  );
+}
+
+export default MyLeetCode;
