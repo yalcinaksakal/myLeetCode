@@ -11,7 +11,7 @@ const NavItem: React.FC<{
   desc: string;
   isLoginRequired: boolean;
 }> = ({ item, isPageActive, svg, path, desc, isLoginRequired }) => {
-  const isLoggedIn = false;
+  const isLoggedIn = true;
   const isDisabled = isLoginRequired && !isLoggedIn;
   const [showDetails, setShowDetails] = useState(false);
   const svgJSX = (

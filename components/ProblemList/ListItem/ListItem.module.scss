@@ -24,8 +24,8 @@
     padding: 0 5px;
   }
   &:hover {
-    transform: translateX(-1px);
-    background-color: #9d9474;
+    transform: scale(1.01);
+    background: #9d9474;
     color: whitesmoke;
   }
 }
