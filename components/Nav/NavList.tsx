@@ -3,12 +3,10 @@ import styles from "./NavList.module.scss";
 import Link from "next/link";
 import NavItem from "./NavItem/NavItem";
 import Image from "next/image";
-import { useRouter } from "next/router";
+
 import { SVGS } from "../../svg/svg";
 
 const NavList: React.FC = () => {
-  const { pathname } = useRouter();
-
   return (
     <div className={styles.nav}>
       <Link href="/" passHref>
@@ -24,7 +22,6 @@ const NavList: React.FC = () => {
             <NavItem
               key={index}
               item={listItem.name}
-              isPageActive={pathname === `/${listItem.path}`}
               svg={listItem.svg}
               desc={listItem.description}
               path={`/${listItem.path}`}

@@ -3,6 +3,7 @@
   align-items: center;
   justify-content: center;
   transform: translate(-5px, -5px);
+  z-index: 100;
 }
 .spinner {
   width: 10px;

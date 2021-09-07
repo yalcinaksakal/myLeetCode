@@ -6,16 +6,18 @@ import NavList from "../components/Nav/NavList";
 import Head from "next/head";
 import { auth, createUserProfileDocument } from "../utils/firebase.utils";
 import { useEffect, useState } from "react";
-import { Provider, useDispatch } from "react-redux";
-import store from "../store";
+import { Provider, useDispatch, useSelector } from "react-redux";
+import store, { RootState } from "../store";
 import { loginActions } from "../store/login-slice";
 import { useRouter } from "next/router";
-import Spinner from "../components/Spinner/Spinner";
+import Spinner from "../UI/Spinner/Spinner";
+import Modal from "../UI/Modal/Modal";
 
 function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const [isRouting, setIsRouting] = useState(false);
   const { events } = useRouter();
+  const { isLoggingIn } = useSelector((state: RootState) => state.login);
   //sign in
   useEffect(() => {
     dispatch(loginActions.setLoggingIn(true));
@@ -60,7 +62,8 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <NavList />
-      {isRouting ? <Spinner /> : <Component {...pageProps} />}
+      {isLoggingIn && <Modal />}
+      {isRouting || isLoggingIn ? <Spinner /> : <Component {...pageProps} />}
       <div className={styles.footer}>
         <a
           href="https://github.com/yalcinaksakal"

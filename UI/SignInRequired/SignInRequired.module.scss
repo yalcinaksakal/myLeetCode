@@ -1,0 +1,20 @@
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  width: max-content;
+  min-width: 210px;
+  button {
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: rgb(243, 224, 206);
+    font-size: 15px;
+    padding: 5px 15px;
+    border-radius: 7px;
+    transition: background 0.2s ease;
+    &:hover {
+      background: rgb(174, 114, 2);
+      color: white;
+    }
+  }
+}

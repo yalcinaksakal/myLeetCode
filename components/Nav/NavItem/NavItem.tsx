@@ -6,24 +6,26 @@ import { auth, signInWithGoogle } from "../../../utils/firebase.utils";
 import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../../../store/login-slice";
 import { RootState } from "../../../store";
-import Spinner2 from "../../Spinner/Spinner2";
-import ProfileImg from "../../ProfileImg/ProfileImg";
+import Spinner2 from "../../../UI/Spinner/Spinner2";
+import { useRouter } from "next/router";
+import ProfileImg from "../../../UI/ProfileImg/ProfileImg";
 
 const NavItem: React.FC<{
   item: string;
-  isPageActive: boolean;
+
   svg: any;
   path: string;
   desc: string;
   isLoginRequired: boolean;
-}> = ({ item, isPageActive, svg, path, desc, isLoginRequired }) => {
+}> = ({ item, svg, path, desc, isLoginRequired }) => {
   const { isLoggedIn, isLoggingIn, displayName } = useSelector(
     (state: RootState) => state.login
   );
   const isDisabled = isLoginRequired && !isLoggedIn;
   const [showDetails, setShowDetails] = useState(false);
   const dispatch = useDispatch();
-
+  const router = useRouter();
+  const isPageActive = router.pathname === path;
   const svgJSX = (
     <svg width="25" height="25" viewBox="0 0 25 25">
       {svg}
@@ -31,9 +33,11 @@ const NavItem: React.FC<{
   );
   return (
     <li
-      className={`${styles.item} ${isPageActive ? styles.active : ""} ${
-        item === "logout" ? styles.red : ""
-      } ${isDisabled ? styles.disabled : ""}`}
+      className={`${styles.item} ${
+        isPageActive && !isDisabled ? styles.active : ""
+      } ${item === "logout" ? styles.red : ""} ${
+        isDisabled ? styles.disabled : ""
+      }`}
       onMouseEnter={() => setShowDetails(true)}
       onMouseLeave={() => setShowDetails(false)}
     >
@@ -41,9 +45,7 @@ const NavItem: React.FC<{
         isLoggedIn && item === "profile" ? (
           <ProfileImg type="nav" isPageActive={isPageActive} />
         ) : (
-          <Link href={path} passHref>
-            {svgJSX}
-          </Link>
+          <Link href={path}>{svgJSX}</Link>
         )
       ) : (
         <div
@@ -53,8 +55,12 @@ const NavItem: React.FC<{
               ? () => {
                   auth.signOut();
                   dispatch(loginActions.logout());
+                  router.replace("/");
                 }
-              : signInWithGoogle
+              : () => {
+                  dispatch(loginActions.setLoggingIn(true));
+                  signInWithGoogle();
+                }
           }
           style={{ transform: "translateY(2px)" }}
         >

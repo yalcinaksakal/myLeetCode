@@ -7,14 +7,16 @@ import Link from "next/link";
 
 const ProfileImg: React.FC<{ type: "page" | "nav"; isPageActive: boolean }> = ({
   type,
-  isPageActive = false,
+  isPageActive,
 }) => {
   const [profileImgSrc, setProfileImgSrc] = useState("");
   const profileIcon = SVGS.profile;
   const { userPicture } = useSelector((state: RootState) => state.login);
+
   useEffect(() => {
     const handleLoad = () => setProfileImgSrc(userPicture);
     const image = new Image();
+
     image.src = userPicture;
     image.addEventListener("load", handleLoad);
     return () => image.removeEventListener("load", handleLoad);
@@ -30,7 +32,11 @@ const ProfileImg: React.FC<{ type: "page" | "nav"; isPageActive: boolean }> = ({
       }}
     />
   ) : (
-    <svg width="25" height="25" viewBox="0 0 25 25">
+    <svg
+      width={type === "nav" ? "25" : "100"}
+      height={type === "nav" ? "25" : "100"}
+      viewBox="0 0 25 25"
+    >
       {profileIcon.svg}
     </svg>
   );

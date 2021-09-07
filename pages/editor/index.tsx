@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import Resizer from "../../components/DragableLine/DragableLine";
+import Resizer from "../../UI/DragableLine/DragableLine";
 import Problem from "../../components/Problem/Problem";
 import styles from "./editor.module.scss";
 
