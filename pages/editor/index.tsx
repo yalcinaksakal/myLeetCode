@@ -7,7 +7,7 @@ import styles from "./editor.module.scss";
 
 const CodeEditor = dynamic(import("../../components/Ace/Ace"), { ssr: false });
 
-const Editor: NextPage = () => {
+const EditorPage: NextPage = () => {
   const [widths, setWidths] = useState({ prblm: "40%", edtr: "40%" });
   const [pageWidth, setPageWidth] = useState(5000);
   const isResizing = useRef(false);
@@ -75,4 +75,4 @@ const Editor: NextPage = () => {
   );
 };
 
-export default Editor;
+export default EditorPage;

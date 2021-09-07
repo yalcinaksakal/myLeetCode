@@ -28,7 +28,11 @@ const Ace: React.FC = () => {
 
   return (
     <div className={styles.editor}>
-      <Modes onThemeChange={themeHandler} onLangChange={langHandler} />
+      <Modes
+        onThemeChange={themeHandler}
+        onLangChange={langHandler}
+        showSaveButton
+      />
       <AceEditor
         placeholder="// Paste or write your code"
         width="100%"

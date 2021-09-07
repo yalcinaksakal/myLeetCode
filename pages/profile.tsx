@@ -5,21 +5,15 @@ import styles from "../styles/Home.module.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import SignInRequired from "../UI/SignInRequired/SignInRequired";
+import Profile from "../components/Profile/Profile";
 
-const Profile: NextPage = () => {
+const ProfilePage: NextPage = () => {
   const { isLoggedIn } = useSelector((state: RootState) => state.login);
   return (
     <main className={styles.main}>
-      {isLoggedIn ? (
-        <>
-          <ProfileImg type="page" isPageActive={false} />
-          <h1 className={styles.title}>Your Profile</h1>
-        </>
-      ) : (
-        <SignInRequired />
-      )}
+      {isLoggedIn ? <Profile /> : <SignInRequired />}
     </main>
   );
 };
 
-export default Profile;
+export default ProfilePage;

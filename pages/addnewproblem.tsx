@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 
 import styles from "../styles/Home.module.scss";
 
-const Add: NextPage = () => {
+const AddPage: NextPage = () => {
   return (
     <>
       <main className={styles.main}>
@@ -12,4 +12,4 @@ const Add: NextPage = () => {
   );
 };
 
-export default Add;
+export default AddPage;

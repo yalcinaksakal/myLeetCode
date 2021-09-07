@@ -3,7 +3,7 @@ import ProblemList from "../components/ProblemList/ProblemList";
 
 import styles from "../styles/Home.module.scss";
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   const list = [
     { no: 1, name: "Two Sum", difficulty: "Easy" },
     { no: 2, name: "Add Two Numbers", difficulty: "Medium" },
@@ -81,4 +81,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HomePage;

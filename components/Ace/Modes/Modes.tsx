@@ -1,16 +1,21 @@
+import { useSelector } from "react-redux";
+import { RootState } from "../../../store";
 import styles from "./Modes.module.scss";
 
 const Modes: React.FC<{
   onThemeChange: (theme: string) => void;
   onLangChange: (lang: string) => void;
-}> = ({ onThemeChange, onLangChange }) => {
-  const isLoggedIn = true;
+  showSaveButton: boolean;
+}> = ({ onThemeChange, onLangChange, showSaveButton }) => {
+  const { isLoggedIn } = useSelector((state: RootState) => state.login);
   const saveHandler = () => {
     console.log("save");
   };
   return (
     <div className={styles.modes}>
-      {isLoggedIn && <button onClick={saveHandler}>Save</button>}
+      {isLoggedIn && showSaveButton && (
+        <button onClick={saveHandler}>Save</button>
+      )}
       <div>Language</div>
       <select name="langs" onChange={e => onLangChange(e.target.value)}>
         <option value="javascript">javascript</option>

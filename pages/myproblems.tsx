@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 
 import styles from "../styles/Home.module.scss";
 
-const MyProblems: NextPage = () => {
+const MyProblemsPage: NextPage = () => {
   return (
     <>
       <main className={styles.main}>
@@ -12,4 +12,4 @@ const MyProblems: NextPage = () => {
   );
 };
 
-export default MyProblems;
+export default MyProblemsPage;
