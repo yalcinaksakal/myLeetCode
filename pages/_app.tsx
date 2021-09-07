@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import NavList from "../components/Nav/NavList";
 import Head from "next/head";
-import { auth } from "../utils/firebase.utils";
+import { auth, createUserProfileDocument } from "../utils/firebase.utils";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch } from "react-redux";
 import store from "../store";
@@ -19,11 +19,12 @@ function App({ Component, pageProps }: AppProps) {
   //sign in
   useEffect(() => {
     dispatch(loginActions.setLoggingIn(true));
-    const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
+    const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       //user
 
+      await createUserProfileDocument(user);
+
       dispatch(loginActions.setLoggingIn(false));
-      console.log(user);
     });
     return () => unsubscribeFromAuth();
   }, []);

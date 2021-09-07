@@ -24,7 +24,9 @@
     padding: 0 5px;
   }
   &:hover {
-    transform: translateX(-15px);
+    transform: translateY(-1px);
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px,
+      rgba(0, 0, 0, 0.23) 0px 3px 3px;
     background: #9d9474;
     color: whitesmoke;
   }

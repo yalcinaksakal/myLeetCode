@@ -12,7 +12,7 @@ const NavItem: React.FC<{
   desc: string;
   isLoginRequired: boolean;
 }> = ({ item, isPageActive, svg, path, desc, isLoginRequired }) => {
-  const isLoggedIn = true;
+  const isLoggedIn = false;
   const isDisabled = isLoginRequired && !isLoggedIn;
   const [showDetails, setShowDetails] = useState(false);
   const svgJSX = (
@@ -36,6 +36,7 @@ const NavItem: React.FC<{
         <div
           className={isLoggedIn ? styles.red : ""}
           onClick={signInWithGoogle}
+          style={{ transform: "translateY(2px)" }}
         >
           {svgJSX}
         </div>

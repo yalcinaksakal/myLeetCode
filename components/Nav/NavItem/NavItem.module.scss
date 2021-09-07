@@ -55,6 +55,7 @@
   transform: scale(1.2);
 }
 .disabled {
+  cursor: default;
   fill: rgb(164, 164, 164);
   .navItemDetail {
     color: rgb(164, 164, 164);
