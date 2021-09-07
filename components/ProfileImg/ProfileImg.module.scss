@@ -1,0 +1,17 @@
+.container {
+  transform: translateY(2px);
+  img {
+    transform: translate(-3px, -3px);
+    transition: all ease-out 0.1s;
+    fill: black;
+  }
+
+  img:hover {
+    box-shadow: dodgerblue 0px 4px 6px -1px;
+  }
+}
+.active {
+  img {
+    box-shadow: dodgerblue 0px 4px 6px -1px;
+  }
+}

@@ -20,11 +20,17 @@ function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     dispatch(loginActions.setLoggingIn(true));
     const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
-      //user
-
+      if (user)
+        dispatch(
+          loginActions.login({
+            email: user.email,
+            displayName: user.displayName,
+            picture: user.photoURL,
+            uid: user.uid,
+          })
+        );
+      else dispatch(loginActions.setLoggingIn(false));
       await createUserProfileDocument(user);
-
-      dispatch(loginActions.setLoggingIn(false));
     });
     return () => unsubscribeFromAuth();
   }, []);
