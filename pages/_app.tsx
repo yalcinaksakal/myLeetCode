@@ -65,7 +65,12 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <NavList />
-      {isLoggingIn && <Modal />}
+      {isLoggingIn && (
+        <div>
+          <h3 style={{ textAlign: "center" }}>Signing In...</h3>
+          <Modal />
+        </div>
+      )}
       {isRouting || isLoggingIn ? <Spinner /> : <Component {...pageProps} />}
       <div className={styles.footer}>
         <a

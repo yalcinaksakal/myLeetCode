@@ -36,6 +36,7 @@ const Profile: React.FC = () => {
         {credentials.easy !== 0 && <p>Easy:{" " + credentials.easy}</p>}
       </div>
       <div>
+        <h3>Code editor preferences</h3>
         <Modes
           onLangChange={langHandler}
           onThemeChange={themeHandler}

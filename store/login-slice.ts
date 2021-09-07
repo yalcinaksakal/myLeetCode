@@ -6,7 +6,7 @@ const initialState = {
   email: "",
   displayName: "",
   userPicture: "",
-  isLoggingIn: false,
+  isLoggingIn: true,
   difficult: 0,
   easy: 0,
   language: "javascript",

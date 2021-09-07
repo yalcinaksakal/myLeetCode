@@ -39,6 +39,9 @@
     &:focus {
       background: rgb(229, 247, 253);
     }
+    @media (max-width: 600px) {
+      width: 200px;
+    }
     @media (max-width: 500px) {
       position: absolute;
       left: 0;

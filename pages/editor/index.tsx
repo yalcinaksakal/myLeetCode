@@ -11,6 +11,8 @@ const EditorPage: NextPage = () => {
   const [widths, setWidths] = useState({ prblm: "40%", edtr: "40%" });
   const [pageWidth, setPageWidth] = useState(5000);
   const isResizing = useRef(false);
+
+  console.log(pageWidth);
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;
@@ -19,7 +21,6 @@ const EditorPage: NextPage = () => {
     window.addEventListener("resize", handleResize);
     const w = window.innerWidth;
     setPageWidth(w);
-
     const width = w <= 500 ? "100%" : Math.floor(pageWidth / 2) - 5 + "px";
     setWidths({ prblm: width, edtr: width });
     return () => window.removeEventListener("resize", handleResize);
@@ -47,7 +48,7 @@ const EditorPage: NextPage = () => {
     >
       <div
         style={{
-          width: widths.prblm,
+          width: pageWidth > 500 ? widths.prblm : "95%",
           height: pageWidth > 500 ? "100%" : "240px",
         }}
       >
@@ -64,7 +65,7 @@ const EditorPage: NextPage = () => {
 
       <div
         style={{
-          width: widths.edtr,
+          width: pageWidth > 500 ? widths.edtr : "95%",
           height: "100%",
           // height: pageWidth > 500 ? "100%" : "calc(100vh - 9.5rem - 260px)",
         }}

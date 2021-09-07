@@ -11,10 +11,11 @@ const Modes: React.FC<{
   const saveHandler = () => {
     console.log("save");
   };
+  // const modeChangeHandler;
   return (
     <div className={styles.modes}>
       {isLoggedIn && showSaveButton && (
-        <button onClick={saveHandler}>Save</button>
+        <button onClick={saveHandler}>Save Code</button>
       )}
       <div>Language</div>
       <select name="langs" onChange={e => onLangChange(e.target.value)}>
