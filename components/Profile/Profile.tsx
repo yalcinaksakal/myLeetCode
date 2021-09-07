@@ -7,12 +7,6 @@ import Modes from "../Ace/Modes/Modes";
 
 const Profile: React.FC = () => {
   const credentials = useSelector((state: RootState) => state.login);
-  const themeHandler = (theme: string): void => {
-    console.log(theme);
-  };
-  const langHandler = (lang: string): void => {
-    console.log(lang);
-  };
 
   return (
     <div className={styles.profile}>
@@ -37,11 +31,7 @@ const Profile: React.FC = () => {
       </div>
       <div>
         <h3>Code editor preferences</h3>
-        <Modes
-          onLangChange={langHandler}
-          onThemeChange={themeHandler}
-          showSaveButton={false}
-        />
+        <Modes showSaveButton={false} />
       </div>
     </div>
   );

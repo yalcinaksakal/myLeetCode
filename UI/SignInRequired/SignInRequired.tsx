@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
 
 import { loginActions } from "../../store/login-slice";
-import { signInWithGoogle } from "../../utils/firebase.utils";
+import { signInWithGoogle } from "../../utils/firebaseauth.utils";
 import styles from "./SignInRequired.module.scss";
 
 const SignInRequired: React.FC = () => {

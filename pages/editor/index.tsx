@@ -12,7 +12,6 @@ const EditorPage: NextPage = () => {
   const [pageWidth, setPageWidth] = useState(5000);
   const isResizing = useRef(false);
 
-  console.log(pageWidth);
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth;

@@ -15,30 +15,24 @@ import "ace-builds/src-noconflict/ext-language_tools";
 
 import styles from "./Ace.module.scss";
 import Modes from "./Modes/Modes";
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 const Ace: React.FC = () => {
-  const [lang, setLang] = useState("javascript");
-  const [theme, setTheme] = useState("tomorrow_night_bright");
   const editorInstance = useRef(null);
-
-  const themeHandler = (theme: string): void => setTheme(theme);
-  const langHandler = (lang: string): void => setLang(lang);
+  const { language, theme } = useSelector((state: RootState) => state.login);
   if (editorInstance.current) editorInstance.current.resize();
 
   return (
     <div className={styles.editor}>
-      <Modes
-        onThemeChange={themeHandler}
-        onLangChange={langHandler}
-        showSaveButton
-      />
+      <Modes showSaveButton />
       <AceEditor
         placeholder="// Paste or write your code"
         width="100%"
         height="100%"
         wrapEnabled={true}
-        mode={lang}
+        mode={language}
         theme={theme}
         name="UNIQUE_ID_OF_DIV"
         fontSize={14}

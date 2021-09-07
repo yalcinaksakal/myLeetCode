@@ -2,7 +2,7 @@ import styles from "./NavItem.module.scss";
 
 import { useState } from "react";
 import Link from "next/link";
-import { auth, signInWithGoogle } from "../../../utils/firebase.utils";
+import { auth, signInWithGoogle } from "../../../utils/firebaseauth.utils";
 import { useDispatch, useSelector } from "react-redux";
 import { loginActions } from "../../../store/login-slice";
 import { RootState } from "../../../store";

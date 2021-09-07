@@ -4,7 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.scss";
 import NavList from "../components/Nav/NavList";
 import Head from "next/head";
-import { auth, createUserProfileDocument } from "../utils/firebase.utils";
+import { auth, createUserProfileDocument } from "../utils/firebaseauth.utils";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store, { RootState } from "../store";

@@ -1,5 +1,4 @@
 import type { NextPage } from "next";
-import ProfileImg from "../UI/ProfileImg/ProfileImg";
 
 import styles from "../styles/Home.module.scss";
 import { useSelector } from "react-redux";

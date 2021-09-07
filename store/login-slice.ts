@@ -76,6 +76,12 @@ const loginSlice = createSlice({
     setLoggingIn(state, action) {
       state.isLoggingIn = action.payload;
     },
+    setLang(state, action) {
+      state.language = action.payload;
+    },
+    setTheme(state, action) {
+      state.theme = action.payload;
+    },
   },
 });
 
