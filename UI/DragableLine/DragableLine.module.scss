@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(226, 226, 226);
+  background: rgb(192, 219, 247);
   border-radius: 3px;
   font-size: 30px;
   font-weight: bolder;
@@ -12,13 +12,15 @@
   line-height: 15px;
   user-select: none;
   transition: all ease 0.2s;
-  color: gray;
+  color: dodgerblue;
+
   &:hover {
-    background: rgb(164, 164, 164);
+    background: dodgerblue;
     color: white;
   }
   @media (max-width: 500px) {
     width: 100vw;
+    height: 10px;
     color: transparent;
     margin-top: 5px;
   }

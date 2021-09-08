@@ -8,9 +8,11 @@ import Profile from "../components/Profile/Profile";
 
 const ProfilePage: NextPage = () => {
   const { isLoggedIn } = useSelector((state: RootState) => state.login);
-  return (
+  return isLoggedIn ? (
+    <Profile />
+  ) : (
     <main className={styles.main}>
-      {isLoggedIn ? <Profile /> : <SignInRequired />}
+      <SignInRequired />
     </main>
   );
 };

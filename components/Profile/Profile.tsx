@@ -11,8 +11,8 @@ const Profile: React.FC = () => {
   return (
     <div className={styles.profile}>
       <div>
-        <ProfileImg type="page" isPageActive={true} />
         <h3>{credentials.displayName}</h3>
+        <ProfileImg type="page" isPageActive={true} />
       </div>
       <div className={styles.status}>
         <h3>Status</h3>
@@ -31,7 +31,9 @@ const Profile: React.FC = () => {
       </div>
       <div>
         <h3>Code editor preferences</h3>
-        <Modes showSaveButton={false} />
+        <div>
+          <Modes showSaveButton={false} type="profile" />
+        </div>
       </div>
     </div>
   );

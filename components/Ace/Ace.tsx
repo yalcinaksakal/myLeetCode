@@ -21,12 +21,16 @@ import { RootState } from "../../store";
 
 const Ace: React.FC = () => {
   const editorInstance = useRef(null);
+  const textInEditor = useRef("");
   const { language, theme } = useSelector((state: RootState) => state.login);
-  if (editorInstance.current) editorInstance.current.resize();
+  if (editorInstance.current) {
+    editorInstance.current.resize();
+    editorInstance.current.focus();
+  }
 
   return (
     <div className={styles.editor}>
-      <Modes showSaveButton />
+      <Modes showSaveButton type="editor" />
       <AceEditor
         placeholder="// Paste or write your code"
         width="100%"
@@ -41,6 +45,8 @@ const Ace: React.FC = () => {
         enableLiveAutocompletion
         enableSnippets
         onLoad={instance => (editorInstance.current = instance)}
+        value={textInEditor.current}
+        onChange={val => (textInEditor.current = val)}
 
         //   annotations={[{ row: 0, column: 2, type: "error", text: "Some error." }]}
       />
