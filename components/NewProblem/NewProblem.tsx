@@ -2,14 +2,59 @@ import styles from "./NewProblem.module.scss";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+
 const NewProblem: React.FC = () => {
   const [isLeetCode, setIsLC] = useState(true);
   const { displayName, personal } = useSelector(
     (state: RootState) => state.login
   );
+  const [formData, setFormData] = useState({
+    no: { val: "", isTouched: false },
+    title: { val: "", isTouched: false },
+    text: { val: "", isTouched: false },
+  });
+  const [formValidity, setFormValidity] = useState({
+    no: false,
+    title: false,
+    text: false,
+    isFormValid: false,
+  });
 
   const typeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsLC(e.target.value === "leet");
+    const val = e.target.value;
+    const isLC = val === "leet";
+    setIsLC(isLC);
+    const no = +formData.no.val.trim();
+    setFormValidity(prev => ({
+      ...prev,
+      no: isLC ? no > 0 && no < 1999 : true,
+      isFormValid: isLC ? prev.no : prev.text && prev.title,
+    }));
+  };
+
+  const addHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (formValidity.isFormValid) console.log("added");
+  };
+
+  const changeHandler = (field, val) => {
+    const value = val.trim();
+    const isValid =
+      field === "no" ? value > 0 && value < 1999 : value.length > 0;
+
+    const newValidity = { ...formValidity };
+    newValidity[field] = isValid;
+    newValidity.isFormValid =
+      field === "no"
+        ? isValid
+        : field === "title"
+        ? isValid && formValidity.text
+        : isValid && formValidity.title;
+    setFormValidity(newValidity);
+
+    const newData = { ...formData };
+    newData[field] = { val, isTouched: true };
+    setFormData(newData);
   };
 
   const userProblemNo =
@@ -19,9 +64,9 @@ const NewProblem: React.FC = () => {
       .join("") +
     "-" +
     (personal + 1);
-  console.log(userProblemNo);
+
   return (
-    <form className={styles.newProblem}>
+    <form className={styles.newProblem} onSubmit={addHandler}>
       <div className={styles.radio} onChange={typeChangeHandler}>
         <div>
           <input type="radio" value="leet" name="type" defaultChecked />
@@ -35,25 +80,46 @@ const NewProblem: React.FC = () => {
 
       <div className={styles.no}>
         <input
+          autoFocus
+          className={
+            formData.no.isTouched && !formValidity.no ? styles.red : ""
+          }
           type="text"
-          maxLength={4}
-          placeholder="LeetCode No"
-          value={isLeetCode ? "" : userProblemNo}
+          placeholder="LeetCode No [1-1998]"
+          value={isLeetCode ? formData.no.val : userProblemNo}
           disabled={!isLeetCode}
-          required
+          onChange={e => changeHandler("no", e.target.value)}
         />
       </div>
       {!isLeetCode && (
         <>
           <div className={styles.title}>
-            <input type="text" maxLength={150} placeholder="Title" />
+            <input
+              autoFocus
+              className={
+                formData.title.isTouched && !formValidity.title
+                  ? styles.red
+                  : ""
+              }
+              type="text"
+              maxLength={150}
+              placeholder="Title"
+              value={formData.title.val}
+              onChange={e => changeHandler("title", e.target.value)}
+            />
           </div>
           <div className={styles.text}>
-            <textarea className={styles.problem}></textarea>
+            <textarea
+              className={`${
+                formData.text.isTouched && !formValidity.text ? styles.red : ""
+              } ${styles.problem}`}
+              value={formData.text.val}
+              onChange={e => changeHandler("text", e.target.value)}
+            ></textarea>
           </div>
         </>
       )}
-      <button>Add</button>
+      <button disabled={!formValidity.isFormValid}>Add</button>
     </form>
   );
 };
