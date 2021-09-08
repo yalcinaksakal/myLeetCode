@@ -33,9 +33,9 @@ const Modes: React.FC<{
           }}
           value={language}
         >
-          <option value="javascript">javascript</option>
-          <option value="java">java</option>
-          <option value="python">python</option>
+          <option value="javascript">Javascript</option>
+          <option value="java">Java</option>
+          <option value="python">Python</option>
         </select>
       </div>
       <div>
