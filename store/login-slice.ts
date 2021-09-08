@@ -41,21 +41,21 @@ const loginSlice = createSlice({
       state.uid = uid;
       state.isLoggingIn = false;
 
-      state.difficult = 2;
-      state.easy = 2;
-      state.language = language;
-      state.medium = 2;
-      state.theme = theme;
-      state.personal = 2;
-      state.total = 8;
-
-      // state.difficult = difficult;
-      // state.easy = easy;
+      // state.difficult = 2;
+      // state.easy = 2;
       // state.language = language;
-      // state.medium = medium;
+      // state.medium = 2;
       // state.theme = theme;
-      // state.personal = personal;
-      // state.total = total;
+      // state.personal = 2;
+      // state.total = 8;
+
+      state.difficult = difficult;
+      state.easy = easy;
+      state.language = language;
+      state.medium = medium;
+      state.theme = theme;
+      state.personal = personal;
+      state.total = total;
     },
     logout(state) {
       state.isLoggedIn = false;
