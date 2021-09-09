@@ -35,7 +35,7 @@ const Ace: React.FC = () => {
         placeholder="// Paste or write your code"
         width="100%"
         height="100%"
-        wrapEnabled={true}
+        wrapEnabled
         mode={language}
         theme={theme}
         name="UNIQUE_ID_OF_DIV"

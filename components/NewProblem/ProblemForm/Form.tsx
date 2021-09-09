@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
 
 const Form: React.FC<{
-  onSubmit: (no: string, title: string, text: string) => void;
+  onSubmit: (no: string, title: string, text: string, isLC: boolean) => void;
 }> = ({ onSubmit }) => {
   const [isLeetCode, setIsLC] = useState(true);
   const { displayName, personal } = useSelector(
@@ -26,7 +26,8 @@ const Form: React.FC<{
     displayName
       .split(" ")
       .map(el => el[0])
-      .join("") +
+      .join("")
+      .toUpperCase() +
     "-" +
     (personal + 1);
 
@@ -46,8 +47,8 @@ const Form: React.FC<{
     e.preventDefault();
     if (formValidity.isFormValid)
       isLeetCode
-        ? onSubmit(formData.no.val, "", "")
-        : onSubmit(userProblemNo, formData.title.val, formData.text.val);
+        ? onSubmit(formData.no.val, "", "", true)
+        : onSubmit(userProblemNo, formData.title.val, formData.text.val, false);
   };
 
   const changeHandler = (field, val) => {

@@ -1,8 +1,6 @@
 import type { NextPage } from "next";
 import ProblemList from "../components/ProblemList/ProblemList";
 
-import styles from "../styles/Home.module.scss";
-
 const HomePage: NextPage = () => {
   const list = [
     { no: 1, name: "Two Sum", difficulty: "Easy" },
