@@ -10,6 +10,7 @@ import { createNewProblem } from "../../utils/createProblem";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { loginActions } from "../../store/login-slice";
+import { useRouter } from "next/router";
 
 const NewProblem: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -18,6 +19,7 @@ const NewProblem: React.FC = () => {
   const { hard, easy, medium, personal, total } = useSelector(
     (state: RootState) => state.login
   );
+  const router = useRouter();
   const dispatch = useDispatch();
   const data = useRef({
     no: "",
@@ -46,6 +48,7 @@ const NewProblem: React.FC = () => {
     if (result.isUpdated)
       dispatch(loginActions.setStatistics(result.isUpdated));
     //route to editor
+    router.push(`/editor?type=open&no=${data.current.no}`);
   };
   const formSubmitHandler = async (
     no: string,
