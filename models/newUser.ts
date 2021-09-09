@@ -1,5 +1,5 @@
 type newUser = {
-  difficult: number;
+  hard: number;
   easy: number;
   language: string;
   medium: number;

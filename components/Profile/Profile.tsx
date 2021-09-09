@@ -23,9 +23,7 @@ const Profile: React.FC = () => {
         {credentials.total !== credentials.personal && (
           <h5>LeetCode:{" " + (credentials.total - credentials.personal)}</h5>
         )}
-        {credentials.difficult !== 0 && (
-          <p>Difficult:{" " + credentials.difficult}</p>
-        )}
+        {credentials.hard !== 0 && <p>Hard:{" " + credentials.hard}</p>}
         {credentials.medium !== 0 && <p>Medium:{" " + credentials.medium}</p>}
         {credentials.easy !== 0 && <p>Easy:{" " + credentials.easy}</p>}
       </div>

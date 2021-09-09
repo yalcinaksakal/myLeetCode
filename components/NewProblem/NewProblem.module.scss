@@ -1,53 +1,25 @@
-.text {
-  width: 90%;
-  margin: 2rem auto;
-  h4,
-  p {
-    margin: 0;
-    padding: 0;
+.err {
+  color: red;
+  margin: 20px;
+  opacity: 0;
+  animation: blur 4s linear;
+  animation-iteration-count: 1;
+}
+
+@keyframes blur {
+  from {
+    opacity: (1);
   }
-  p {
-    color: dodgerblue;
-    font-size: 10px;
-    margin-bottom: 5px;
+  25% {
+    opacity: (0.75);
   }
-  h4 {
-    color: rgb(179, 117, 2);
-    margin-bottom: 1rem;
+  50% {
+    opacity: (0.5);
   }
-  textarea {
-    width: 100%;
-    height: 50vh;
-    min-width: 250px;
-    resize: none;
-    outline: none;
+  75% {
+    opacity: (0.25);
   }
-  div {
-    margin: 1rem 0;
-    width: 200px;
-    display: flex;
-    justify-content: space-between;
-    button {
-      width: 80px;
-      padding: 5px;
-      background: rgb(93, 171, 248);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      transition: all ease 0.2s;
-      cursor: pointer;
-      &:hover {
-        background: dodgerblue;
-      }
-      &:disabled {
-        background: gray;
-      }
-    }
-    .red {
-      background: rgb(252, 99, 99);
-      &:hover {
-        background: red;
-      }
-    }
+  100% {
+    opacity: (0);
   }
 }

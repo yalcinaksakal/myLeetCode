@@ -17,9 +17,12 @@ function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const [isRouting, setIsRouting] = useState(false);
   const { events } = useRouter();
-  const { isLoggingIn } = useSelector((state: RootState) => state.login);
+  const { isLoggingIn, isLoggedIn } = useSelector(
+    (state: RootState) => state.login
+  );
   //sign in
   useEffect(() => {
+    if (isLoggedIn) return;
     dispatch(loginActions.setLoggingIn(true));
     const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       if (!user) {
@@ -29,10 +32,9 @@ function App({ Component, pageProps }: AppProps) {
       const userData = await createUserProfileDocument(user);
       dispatch(
         loginActions.login({
-          email: user.email,
           displayName: user.displayName,
           picture: user.photoURL,
-          uid: user.uid,
+
           ...userData,
         })
       );

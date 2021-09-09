@@ -24,9 +24,11 @@ const ListItem: React.FC<{ item: PrblmItem; index: number }> = ({
     >
       <div className={styles.no}>{item.no}</div>
       <div className={styles.name}>{item.name}</div>
-      <div className={styles.difficulty} style={styleDifficulty}>
-        {item.difficulty}
-      </div>
+      {item.difficulty !== "" && (
+        <div className={styles.difficulty} style={styleDifficulty}>
+          {item.difficulty}
+        </div>
+      )}
     </li>
   );
 };

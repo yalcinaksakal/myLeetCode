@@ -1,5 +1,5 @@
 import styles from "./ProfileImg.module.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SVGS } from "../../svg/svg";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
@@ -9,22 +9,14 @@ const ProfileImg: React.FC<{ type: "page" | "nav"; isPageActive: boolean }> = ({
   type,
   isPageActive,
 }) => {
-  const [profileImgSrc, setProfileImgSrc] = useState("");
+  const [isImgErr, setIsImgErr] = useState(false);
   const profileIcon = SVGS.profile;
   const { userPicture } = useSelector((state: RootState) => state.login);
 
-  useEffect(() => {
-    const handleLoad = () => setProfileImgSrc(userPicture);
-    const image = new Image();
-
-    image.src = userPicture;
-    image.addEventListener("load", handleLoad);
-    return () => image.removeEventListener("load", handleLoad);
-  }, [setProfileImgSrc, userPicture]);
-
-  const innerJsx = profileImgSrc ? (
+  const innerJsx = !isImgErr ? (
     <img
-      src={profileImgSrc}
+      src={userPicture}
+      onError={() => setIsImgErr(true)}
       style={{
         width: type === "nav" ? "22px" : "100px",
         borderRadius: "50%",

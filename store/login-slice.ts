@@ -2,12 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   isLoggedIn: false,
-  uid: "",
-  email: "",
   displayName: "",
   userPicture: "",
   isLoggingIn: true,
-  difficult: 0,
+  hard: 0,
   easy: 0,
   language: "javascript",
   medium: 0,
@@ -22,11 +20,9 @@ const loginSlice = createSlice({
   reducers: {
     login(state, action) {
       const {
-        email,
         displayName,
         picture,
-        uid,
-        difficult,
+        hard,
         easy,
         language,
         medium,
@@ -36,20 +32,9 @@ const loginSlice = createSlice({
       } = action.payload;
       state.isLoggedIn = true;
       state.displayName = displayName;
-      state.email = email;
       state.userPicture = picture;
-      state.uid = uid;
       state.isLoggingIn = false;
-
-      // state.difficult = 2;
-      // state.easy = 2;
-      // state.language = language;
-      // state.medium = 2;
-      // state.theme = theme;
-      // state.personal = 2;
-      // state.total = 8;
-
-      state.difficult = difficult;
+      state.hard = hard;
       state.easy = easy;
       state.language = language;
       state.medium = medium;
@@ -60,12 +45,9 @@ const loginSlice = createSlice({
     logout(state) {
       state.isLoggedIn = false;
       state.displayName = "";
-      state.email = "";
       state.userPicture = "";
-      state.uid = "";
       state.isLoggingIn = false;
-
-      state.difficult = 0;
+      state.hard = 0;
       state.easy = 0;
       state.language = "javascript";
       state.medium = 0;
@@ -81,6 +63,14 @@ const loginSlice = createSlice({
     },
     setTheme(state, action) {
       state.theme = action.payload;
+    },
+    setStatistics(state, action) {
+      const { hard, easy, medium, personal, total } = action.payload;
+      state.hard = hard;
+      state.easy = easy;
+      state.medium = medium;
+      state.personal = personal;
+      state.total = total;
     },
   },
 });

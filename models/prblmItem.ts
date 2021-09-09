@@ -4,4 +4,20 @@ type PrblmItem = {
   difficulty: string;
 };
 
+export type Prblm = {
+  no: number | string;
+  name: string;
+  text: string;
+  difficulty: string;
+  isLC: boolean;
+};
+
+export type UserStatistics = {
+  hard: number;
+  medium: number;
+  easy: number;
+  personal: number;
+  total: number;
+};
+
 export default PrblmItem;
