@@ -16,11 +16,14 @@ const Modes: React.FC<{
     (state: RootState) => state.login
   );
   const dispatch = useDispatch();
-  const position = type === "editor" ? "0" : "auto";
-
+  const positionRight = type === "editor" ? "20px" : "auto";
+  const positionBottom = type === "editor" ? "0" : "auto";
   const [isSaving, setIsSaving] = useState(false);
   return (
-    <div className={styles.modes} style={{ bottom: position, right: position }}>
+    <div
+      className={styles.modes}
+      style={{ bottom: positionBottom, right: positionRight }}
+    >
       {isLoggedIn && showSaveButton && (
         <button
           className={isSaving ? styles.saving : ""}
@@ -40,21 +43,23 @@ const Modes: React.FC<{
           )}
         </button>
       )}
-      <div>
-        <div>Language</div>
-        <select
-          name="langs"
-          onChange={e => {
-            dispatch(loginActions.setLang(e.target.value));
-            changeLang(e.target.value);
-          }}
-          value={language}
-        >
-          <option value="javascript">Javascript</option>
-          <option value="java">Java</option>
-          <option value="python">Python</option>
-        </select>
-      </div>
+      {isLoggedIn && (showSaveButton || type === "profile") && (
+        <div>
+          <div>Language</div>
+          <select
+            name="langs"
+            onChange={e => {
+              dispatch(loginActions.setLang(e.target.value));
+              changeLang(e.target.value);
+            }}
+            value={language}
+          >
+            <option value="javascript">Javascript</option>
+            <option value="java">Java</option>
+            <option value="python">Python</option>
+          </select>
+        </div>
+      )}
       <div>
         <div>Theme</div>
         <select

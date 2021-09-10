@@ -12,6 +12,7 @@ const initialState = {
   theme: "tomorrow",
   personal: 0,
   total: 0,
+  loginClicked: false,
 };
 
 const loginSlice = createSlice({
@@ -41,6 +42,7 @@ const loginSlice = createSlice({
       state.theme = theme;
       state.personal = personal;
       state.total = total;
+      state.loginClicked = false;
     },
     logout(state) {
       state.isLoggedIn = false;
@@ -71,6 +73,9 @@ const loginSlice = createSlice({
       state.medium = medium;
       state.personal = personal;
       state.total = total;
+    },
+    setLoginClicked(state, action) {
+      state.loginClicked = action.payload;
     },
   },
 });

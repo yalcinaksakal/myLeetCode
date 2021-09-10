@@ -59,6 +59,7 @@ const NavItem: React.FC<{
                 }
               : () => {
                   dispatch(loginActions.setLoggingIn(true));
+                  dispatch(loginActions.setLoginClicked(true));
                   signInWithGoogle();
                 }
           }

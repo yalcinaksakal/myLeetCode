@@ -16,6 +16,7 @@ const SignInRequired: React.FC = () => {
         <button
           onClick={() => {
             dispatch(loginActions.setLoggingIn(true));
+            dispatch(loginActions.setLoginClicked(true));
             signInWithGoogle();
           }}
         >

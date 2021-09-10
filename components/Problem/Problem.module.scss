@@ -12,7 +12,7 @@
 
   p {
     margin: 0;
-    background: var(--colorTextareaBack);
+    background: var(--colorP);
     padding: 10px 40px 10px 20px;
     color: rgb(20, 137, 255);
     font-size: 14px;
@@ -21,7 +21,7 @@
   }
   textarea {
     flex: 1 1 auto;
-    background: var(--colorP);
+    background: var(--colorTextareaBack);
     color: var(--colorTextarea);
     width: 100%;
     height: auto;

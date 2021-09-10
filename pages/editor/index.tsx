@@ -29,10 +29,13 @@ const EditorPage: NextPage = () => {
         setDoesPageExist(false);
         return;
       }
-
       setProblemData(result.data);
     };
-    if (!doesPageExist || (type === "private" && !isLoggedIn)) return;
+
+    if (!doesPageExist || (type === "private" && !isLoggedIn)) {
+      setIsLoading(false);
+      return;
+    }
 
     getData();
   }, [type, isLoggedIn, no]);
@@ -46,7 +49,16 @@ const EditorPage: NextPage = () => {
   ) : doesPageExist ? (
     <Editor data={problemData} isPrivate={type === "private"} />
   ) : (
-    <h1>This page does not exist</h1>
+    <main className={styles.main}>
+      <p>
+        <h1
+          style={{ display: "inline-block", marginRight: "10px", color: "red" }}
+        >
+          404
+        </h1>{" "}
+        This page does not exist
+      </p>
+    </main>
   );
 };
 

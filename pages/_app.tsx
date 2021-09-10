@@ -17,7 +17,7 @@ function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const [isRouting, setIsRouting] = useState(false);
   const { events } = useRouter();
-  const { isLoggingIn, isLoggedIn } = useSelector(
+  const { isLoggingIn, isLoggedIn, loginClicked } = useSelector(
     (state: RootState) => state.login
   );
   //sign in
@@ -27,6 +27,7 @@ function App({ Component, pageProps }: AppProps) {
     const unsubscribeFromAuth = auth.onAuthStateChanged(async user => {
       if (!user) {
         dispatch(loginActions.setLoggingIn(false));
+        dispatch(loginActions.setLoginClicked(false));
         return;
       }
       const userData = await createUserProfileDocument(user);
@@ -67,7 +68,7 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <NavList />
-      {isLoggingIn && (
+      {isLoggingIn && loginClicked && (
         <div>
           <h3 style={{ textAlign: "center" }}>Signing In...</h3>
           <Modal />

@@ -17,15 +17,15 @@ const Profile: React.FC = () => {
       <div className={styles.status}>
         <h3>Status</h3>
         <h4>Total:{" " + credentials.total}</h4>
-        {credentials.personal !== 0 && (
+        {credentials.personal != 0 && (
           <h5>Personal:{" " + credentials.personal}</h5>
         )}
-        {credentials.total !== credentials.personal && (
+        {credentials.total != credentials.personal && (
           <h5>LeetCode:{" " + (credentials.total - credentials.personal)}</h5>
         )}
-        {credentials.hard !== 0 && <p>Hard:{" " + credentials.hard}</p>}
-        {credentials.medium !== 0 && <p>Medium:{" " + credentials.medium}</p>}
-        {credentials.easy !== 0 && <p>Easy:{" " + credentials.easy}</p>}
+        {credentials.hard != 0 && <p>Hard:{" " + credentials.hard}</p>}
+        {credentials.medium != 0 && <p>Medium:{" " + credentials.medium}</p>}
+        {credentials.easy != 0 && <p>Easy:{" " + credentials.easy}</p>}
       </div>
       <div>
         <h3>Code editor preferences</h3>
