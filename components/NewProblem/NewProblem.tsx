@@ -48,7 +48,7 @@ const NewProblem: React.FC = () => {
     if (result.isUpdated)
       dispatch(loginActions.setStatistics(result.isUpdated));
     //route to editor
-    router.push(`/editor?type=open&no=${data.current.no}`);
+    router.push(`/editor?type=private&no=${data.current.no}`);
   };
   const formSubmitHandler = async (
     no: string,

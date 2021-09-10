@@ -16,7 +16,20 @@
     outline: none;
   }
   button {
+    width: fit-content;
+    padding: 5px;
     margin-top: auto;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    background: dodgerblue;
+    border-radius: 5px;
+    color: white;
+    transition: all 0.2s;
+    &:hover {
+      background: limegreen;
+    }
   }
   &:hover {
     opacity: 100%;

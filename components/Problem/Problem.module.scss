@@ -1,9 +1,33 @@
 .problem {
   width: 100%;
-  height: calc(100% - 10px);
-  resize: none;
-  border: none;
-  padding: 0 20px;
-  font-family: Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
-    Helvetica Neue, sans-serif;
+  height: calc(100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  span {
+    color: var(--color);
+    font-size: 14px;
+  }
+
+  p {
+    margin: 0;
+    background: black;
+    padding: 5px 20px;
+    color: dodgerblue;
+    font-size: 14px;
+    text-transform: capitalize;
+    border-bottom: 5px solid rgb(192, 219, 247);
+  }
+  textarea {
+    flex: 1 1 auto;
+    background: var(--colorBack);
+    color: var(--colorText);
+    width: 100%;
+    height: auto;
+    resize: none;
+    border: none;
+    padding: 5px 20px;
+    font-family: Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans,
+      Helvetica Neue, sans-serif;
+  }
 }

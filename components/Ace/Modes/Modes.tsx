@@ -8,21 +8,18 @@ import { loginActions } from "../../../store/login-slice";
 const Modes: React.FC<{
   showSaveButton: boolean;
   type: "editor" | "profile";
-}> = ({ showSaveButton, type }) => {
+  onSave: () => void | null;
+}> = ({ showSaveButton, type, onSave }) => {
   const { isLoggedIn, language, theme } = useSelector(
     (state: RootState) => state.login
   );
   const dispatch = useDispatch();
   const position = type === "editor" ? "0" : "auto";
 
-  const saveHandler = () => {
-    console.log("save");
-  };
-
   return (
     <div className={styles.modes} style={{ bottom: position, right: position }}>
       {isLoggedIn && showSaveButton && (
-        <button onClick={saveHandler}>Save Code</button>
+        <button onClick={onSave}>Save Code</button>
       )}
       <div>
         <div>Language</div>

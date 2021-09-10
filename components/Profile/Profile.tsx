@@ -30,7 +30,7 @@ const Profile: React.FC = () => {
       <div>
         <h3>Code editor preferences</h3>
         <div>
-          <Modes showSaveButton={false} type="profile" />
+          <Modes showSaveButton={false} type="profile" onSave={null} />
         </div>
       </div>
     </div>

@@ -1,12 +1,13 @@
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
+import Solution from "../../models/solution";
 import Resizer from "../../UI/DragableLine/DragableLine";
 import Problem from "../Problem/Problem";
 import styles from "./Editor.module.scss";
 
 const CodeEditor = dynamic(import("../Ace/Ace"), { ssr: false });
 
-const Editor: React.FC = () => {
+const Editor: React.FC<{ data: Solution }> = ({ data }) => {
   const [widths, setWidths] = useState({ prblm: "40%", edtr: "40%" });
   const [pageWidth, setPageWidth] = useState(5000);
   const isResizing = useRef(false);
@@ -50,7 +51,15 @@ const Editor: React.FC = () => {
           height: pageWidth > 500 ? "100%" : "240px",
         }}
       >
-        <Problem />
+        <Problem
+          data={{
+            difficulty: data.difficulty,
+            name: data.name,
+            no: data.no,
+            text: data.text,
+            isLC: data.isLC,
+          }}
+        />
       </div>
 
       <div
@@ -63,11 +72,11 @@ const Editor: React.FC = () => {
 
       <div
         style={{
-          width: pageWidth > 500 ? widths.edtr : "100%",
+          width: pageWidth > 500 ? widths.edtr : "95%",
           height: "100%",
         }}
       >
-        <CodeEditor />
+        <CodeEditor data={data.solution} />
       </div>
     </div>
   );
