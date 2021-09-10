@@ -16,7 +16,7 @@
     outline: none;
   }
   button {
-    width: fit-content;
+    width: 80px;
     padding: 5px;
     margin-top: auto;
     outline: none;
@@ -29,6 +29,10 @@
     transition: all 0.2s;
     &:hover {
       background: limegreen;
+    }
+    &:disabled {
+      background: rgb(99, 136, 174);
+      cursor: default;
     }
   }
   &:hover {

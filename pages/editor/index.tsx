@@ -29,6 +29,7 @@ const EditorPage: NextPage = () => {
         setDoesPageExist(false);
         return;
       }
+
       setProblemData(result.data);
     };
     if (!doesPageExist || (type === "private" && !isLoggedIn)) return;

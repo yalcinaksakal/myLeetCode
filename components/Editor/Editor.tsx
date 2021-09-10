@@ -80,7 +80,11 @@ const Editor: React.FC<{ data: Solution; isPrivate: boolean }> = ({
           height: "100%",
         }}
       >
-        <CodeEditor data={data.solution} isPrivate={isPrivate} />
+        {data.no ? (
+          <CodeEditor data={data.solution} isPrivate={isPrivate} no={data.no} />
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );

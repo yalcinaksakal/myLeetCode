@@ -4,11 +4,13 @@ import styles from "./Modes.module.scss";
 import { changeTheme } from "../../../utils/changeMode.utils";
 import { changeLang } from "../../../utils/changeMode.utils";
 import { loginActions } from "../../../store/login-slice";
+import { useState } from "react";
+import SpinnerDots from "../../../UI/Spinner/SpinnerDots";
 
 const Modes: React.FC<{
   showSaveButton: boolean;
   type: "editor" | "profile";
-  onSave: () => void | null;
+  onSave: () => Promise<boolean> | null;
 }> = ({ showSaveButton, type, onSave }) => {
   const { isLoggedIn, language, theme } = useSelector(
     (state: RootState) => state.login
@@ -16,10 +18,27 @@ const Modes: React.FC<{
   const dispatch = useDispatch();
   const position = type === "editor" ? "0" : "auto";
 
+  const [isSaving, setIsSaving] = useState(false);
   return (
     <div className={styles.modes} style={{ bottom: position, right: position }}>
       {isLoggedIn && showSaveButton && (
-        <button onClick={onSave}>Save Code</button>
+        <button
+          className={isSaving ? styles.saving : ""}
+          disabled={isSaving}
+          onClick={async () => {
+            setIsSaving(true);
+            await onSave();
+            setIsSaving(false);
+          }}
+        >
+          {isSaving ? (
+            <>
+              <span>Saving</span> <SpinnerDots />
+            </>
+          ) : (
+            "Save Code"
+          )}
+        </button>
       )}
       <div>
         <div>Language</div>

@@ -18,10 +18,12 @@ import Modes from "./Modes/Modes";
 import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import { savePrblm } from "../../utils/deleteSaveProblem";
 
-const Ace: React.FC<{ data: string; isPrivate: boolean }> = ({
+const Ace: React.FC<{ data: string; isPrivate: boolean; no: string }> = ({
   data,
   isPrivate,
+  no,
 }) => {
   const editorInstance = useRef(null);
   const textInEditor = useRef(data);
@@ -30,8 +32,9 @@ const Ace: React.FC<{ data: string; isPrivate: boolean }> = ({
     editorInstance.current.resize();
     editorInstance.current.focus();
   }
-  const saveHandler = () => {
-    console.log(textInEditor.current);
+  const saveHandler = async () => {
+    await savePrblm(no, textInEditor.current);
+    return true;
     //////////////////////////////////////
   };
 
