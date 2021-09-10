@@ -19,7 +19,10 @@ import { useRef } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 
-const Ace: React.FC<{ data: string }> = ({ data }) => {
+const Ace: React.FC<{ data: string; isPrivate: boolean }> = ({
+  data,
+  isPrivate,
+}) => {
   const editorInstance = useRef(null);
   const textInEditor = useRef(data);
   const { language, theme } = useSelector((state: RootState) => state.login);
@@ -34,7 +37,7 @@ const Ace: React.FC<{ data: string }> = ({ data }) => {
 
   return (
     <div className={styles.editor}>
-      <Modes showSaveButton type="editor" onSave={saveHandler} />
+      <Modes showSaveButton={isPrivate} type="editor" onSave={saveHandler} />
       <AceEditor
         placeholder="// Paste or write your code"
         width="100%"

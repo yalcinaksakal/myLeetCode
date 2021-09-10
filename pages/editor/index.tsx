@@ -43,7 +43,7 @@ const EditorPage: NextPage = () => {
   ) : isLoading ? (
     <Spinner />
   ) : doesPageExist ? (
-    <Editor data={problemData} />
+    <Editor data={problemData} isPrivate={type === "private"} />
   ) : (
     <h1>This page does not exist</h1>
   );

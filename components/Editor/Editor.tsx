@@ -7,7 +7,10 @@ import styles from "./Editor.module.scss";
 
 const CodeEditor = dynamic(import("../Ace/Ace"), { ssr: false });
 
-const Editor: React.FC<{ data: Solution }> = ({ data }) => {
+const Editor: React.FC<{ data: Solution; isPrivate: boolean }> = ({
+  data,
+  isPrivate,
+}) => {
   const [widths, setWidths] = useState({ prblm: "40%", edtr: "40%" });
   const [pageWidth, setPageWidth] = useState(5000);
   const isResizing = useRef(false);
@@ -59,6 +62,7 @@ const Editor: React.FC<{ data: Solution }> = ({ data }) => {
             text: data.text,
             isLC: data.isLC,
           }}
+          isPrivate={isPrivate}
         />
       </div>
 
@@ -76,7 +80,7 @@ const Editor: React.FC<{ data: Solution }> = ({ data }) => {
           height: "100%",
         }}
       >
-        <CodeEditor data={data.solution} />
+        <CodeEditor data={data.solution} isPrivate={isPrivate} />
       </div>
     </div>
   );

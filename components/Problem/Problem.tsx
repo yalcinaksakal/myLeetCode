@@ -1,14 +1,23 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Prblm } from "../../models/prblmItem";
 import { RootState } from "../../store";
+import { loginActions } from "../../store/login-slice";
 import { deleteSvg } from "../../svg/delete";
+import { deletePrblm } from "../../utils/deleteSaveProblem";
 import styles from "./Problem.module.scss";
 
-const Problem: React.FC<{ data: Prblm }> = ({ data }) => {
-  const { theme } = useSelector((state: RootState) => state.login);
-
+const Problem: React.FC<{ data: Prblm; isPrivate: boolean }> = ({
+  data,
+  isPrivate,
+}) => {
+  const { theme, total, personal, hard, easy, medium } = useSelector(
+    (state: RootState) => state.login
+  );
+  const dispatch = useDispatch();
   const [showWarning, setShowWarning] = useState(false);
+  const router = useRouter();
   const styleVariables = {
     "--colorDifficulty":
       data.difficulty === "Easy"
@@ -25,11 +34,23 @@ const Problem: React.FC<{ data: Prblm }> = ({ data }) => {
   } as React.CSSProperties;
 
   const deleteProblemHandler = () => {
-    console.log("deleting");
+    setShowWarning(false);
+    const newStatistics = { total, easy, medium, hard, personal };
+    newStatistics["total"]--;
+    if (data.isLC) newStatistics[data.difficulty.toLocaleLowerCase()]--;
+    else newStatistics["personal"]--;
+
+    //delete
+    deletePrblm(data.no, newStatistics);
+    //update store
+    dispatch(loginActions.setStatistics(newStatistics));
+    router.replace("/myproblems");
   };
   return (
     <div className={styles.problem} style={styleVariables}>
-      <button onClick={() => setShowWarning(true)}>{deleteSvg}</button>
+      {isPrivate && (
+        <button onClick={() => setShowWarning(true)}>{deleteSvg}</button>
+      )}
       {showWarning && (
         <div className={styles.consent}>
           Are you sure to delete?
