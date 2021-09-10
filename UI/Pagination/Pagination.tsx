@@ -6,7 +6,11 @@ const Pagination: React.FC<{ numberOfPages: number; currentPage: number }> = ({
   currentPage,
 }) => {
   const pageArr = [...pageArrConstructor(numberOfPages, currentPage)];
-  console.log(pageArr);
+
+  const clickHandler = (page: string) => {
+    console.log("clicked:" + page);
+  };
+
   return (
     <div className={styles.pagination}>
       <div className={styles.page}>{"<"}</div>
@@ -16,17 +20,12 @@ const Pagination: React.FC<{ numberOfPages: number; currentPage: number }> = ({
             page === currentPage ? styles.active : ""
           } ${page === "..." ? styles.disabled : ""}`}
           key={i}
+          onClick={() => +page !== currentPage && clickHandler("" + page)}
         >
           {page}
         </div>
       ))}
-      {/* <div className={styles.page}>1</div>
-      <div className={styles.page}>...</div>
-      <div className={styles.page}>36</div>
-      <div className={styles.page}>48</div>
-      <div className={styles.page}>54</div>
-      <div className={styles.page}>...</div>
-      <div className={styles.page}>77</div> */}
+
       <div className={styles.page}>{">"}</div>
     </div>
   );

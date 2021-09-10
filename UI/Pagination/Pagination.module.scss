@@ -18,14 +18,13 @@
     transition: all 0.2s ease;
     &:hover,
     &.active {
-      &:not(.disabled) {
-        transform: scale(1.2);
-        background: rgb(170, 213, 255);
-        color: white;
-      }
+      transform: scale(1.2);
+      background: rgb(170, 213, 255);
+      color: white;
     }
     &.disabled {
       cursor: default;
+      pointer-events: none;
     }
   }
 }
