@@ -2,21 +2,36 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   openSolutionsLength: 0,
-  openSearch: "",
-  privateSearch: "",
+  openSearch: [],
+  privateSearch: [],
+  privateSolutionsLength: 0,
 };
 
 const webSlice = createSlice({
   name: "web",
   initialState,
   reducers: {
-    setLength(state, action) {
-      state.openSolutionsLength = action.payload;
+    setOpenSearchList(state, action) {
+      state.openSearch = action.payload;
+      state.openSolutionsLength = action.payload.length;
     },
-    setSearchStrings(state, action) {
-      state.openSearch = action.payload.openSearch;
-
-      state.privateSearch = action.payload.privateSearch;
+    setPrivateSearchList(state, action) {
+      state.privateSearch = action.payload;
+      state.privateSolutionsLength = action.payload.length;
+    },
+    logout(state) {
+      state.privateSearch = [];
+      state.privateSolutionsLength = 0;
+    },
+    add(state, action) {
+      state.privateSearch.push(action.payload);
+      state.privateSolutionsLength++;
+    },
+    delete(state, action) {
+      state.privateSearch = state.privateSearch.filter(
+        el => el.no !== action.payload
+      );
+      state.privateSolutionsLength--;
     },
   },
 });

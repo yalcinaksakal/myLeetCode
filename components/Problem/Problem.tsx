@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Prblm } from "../../models/prblmItem";
 import { RootState } from "../../store";
 import { loginActions } from "../../store/login-slice";
+import { webActions } from "../../store/web-slice";
 import { deleteSvg } from "../../svg/delete";
 import { deletePrblm } from "../../utils/deleteSaveProblem";
 import styles from "./Problem.module.scss";
@@ -12,9 +13,8 @@ const Problem: React.FC<{ data: Prblm; isPrivate: boolean }> = ({
   data,
   isPrivate,
 }) => {
-  const { theme, total, personal, hard, easy, medium } = useSelector(
-    (state: RootState) => state.login
-  );
+  const { theme, total, personal, hard, easy, medium, personalCounter } =
+    useSelector((state: RootState) => state.login);
   const dispatch = useDispatch();
   const [showWarning, setShowWarning] = useState(false);
   const router = useRouter();
@@ -35,7 +35,14 @@ const Problem: React.FC<{ data: Prblm; isPrivate: boolean }> = ({
 
   const deleteProblemHandler = () => {
     setShowWarning(false);
-    const newStatistics = { total, easy, medium, hard, personal };
+    const newStatistics = {
+      total,
+      easy,
+      medium,
+      hard,
+      personal,
+      personalCounter,
+    };
     newStatistics["total"]--;
     if (data.isLC) newStatistics[data.difficulty.toLocaleLowerCase()]--;
     else newStatistics["personal"]--;
@@ -44,6 +51,7 @@ const Problem: React.FC<{ data: Prblm; isPrivate: boolean }> = ({
     deletePrblm(data.no, newStatistics);
     //update store
     dispatch(loginActions.setStatistics(newStatistics));
+    dispatch(webActions.delete(data.no));
     router.replace("/myproblems");
   };
   return (

@@ -12,15 +12,21 @@ import { loginActions } from "../store/login-slice";
 import { useRouter } from "next/router";
 import Spinner from "../UI/Spinner/Spinner";
 import Modal from "../UI/Modal/Modal";
-import { getOpenLength } from "../utils/paginationTest";
 import { webActions } from "../store/web-slice";
+import {
+  getOpenSearchList,
+  getPrivateSearchList,
+} from "../utils/getSearchLists";
 
 function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
   const [isRouting, setIsRouting] = useState(false);
   const { events } = useRouter();
-  const { isLoggingIn, isLoggedIn, loginClicked } = useSelector(
+  const { isLoggingIn, isLoggedIn, loginClicked, total } = useSelector(
     (state: RootState) => state.login
+  );
+  const { openSolutionsLength, privateSolutionsLength } = useSelector(
+    (state: RootState) => state.web
   );
   //sign in
   useEffect(() => {
@@ -59,14 +65,20 @@ function App({ Component, pageProps }: AppProps) {
     };
   }, [events]);
 
-  //webSlice
+  //webSlice openSearchlist, privateSearchList
   useEffect(() => {
     const getData = async () => {
-      const length = await getOpenLength();
-      dispatch(webActions.setLength(length));
+      if (!openSolutionsLength) {
+        const openList = await getOpenSearchList();
+        dispatch(webActions.setOpenSearchList([...openList]));
+      }
+
+      if (privateSolutionsLength || !isLoggedIn) return;
+      const privateList = await getPrivateSearchList();
+      dispatch(webActions.setPrivateSearchList([...privateList]));
     };
     getData();
-  }, []);
+  }, [isLoggedIn]);
   return (
     <>
       <Head>

@@ -20,7 +20,7 @@
     width: calc(100% - 100px);
     margin: 0 10px;
     border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border-right: var(--rigtBorder);
     padding: 0 5px;
   }
   &:hover {

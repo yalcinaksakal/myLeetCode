@@ -10,11 +10,8 @@ const HomePage: NextPage = () => {
       name: "Longest Substring Without Repeating Characters",
       difficulty: "Medium",
     },
-    {
-      no: 2000,
-      name: "Longest Substring Without Repeating Longest Substring Without Repeating Characters",
-      difficulty: "Difficult",
-    },
+    { no: 1, name: "Two Sum", difficulty: "Easy" },
+    { no: 2, name: "Add Two Numbers", difficulty: "Medium" },
     { no: 1, name: "Two Sum", difficulty: "Easy" },
     { no: 2, name: "Add Two Numbers", difficulty: "Medium" },
     {
@@ -22,25 +19,12 @@ const HomePage: NextPage = () => {
       name: "Longest Substring Without Repeating Characters",
       difficulty: "Medium",
     },
-    {
-      no: 2000,
-      name: "Longest Substring Without Repeating Longest Substring Without Repeating Characters",
-      difficulty: "Difficult",
-    },
-    { no: 1, name: "Two Sum", difficulty: "Easy" },
     { no: 2, name: "Add Two Numbers", difficulty: "Medium" },
     {
       no: 3,
-      name: "Longest Substring Without Repeating Characters",
+      name: "Longest Substring Without Longest Substring Without Repeating Longest Substring Without Longest Substring Without Characters",
       difficulty: "Medium",
     },
-    {
-      no: 2000,
-      name: "Longest Substring Without Repeating Longest Substring Without Repeating Characters",
-      difficulty: "Difficult",
-    },
-    { no: 1, name: "Two Sum", difficulty: "Easy" },
-    { no: 2, name: "Add Two Numbers", difficulty: "Medium" },
   ];
   return (
     <div
@@ -52,7 +36,7 @@ const HomePage: NextPage = () => {
         margin: "10px 0",
       }}
     >
-      <ProblemList list={list} type="open" />
+      <ProblemList type="open" />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const Form: React.FC<{
   onSubmit: (no: string, title: string, text: string, isLC: boolean) => void;
 }> = ({ onSubmit }) => {
   const [isLeetCode, setIsLC] = useState(true);
-  const { displayName, personal } = useSelector(
+  const { displayName, personalCounter } = useSelector(
     (state: RootState) => state.login
   );
   const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const Form: React.FC<{
       .join("")
       .toUpperCase() +
     "-" +
-    (personal + 1);
+    (personalCounter + 1);
 
   const typeChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     const val = e.target.value;

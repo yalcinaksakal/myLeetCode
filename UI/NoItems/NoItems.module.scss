@@ -1,0 +1,24 @@
+.container {
+  width: 95%;
+  min-height: 400px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  button {
+    margin-left: 15px;
+    height: 30px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background: rgb(243, 224, 206);
+    font-size: 15px;
+    padding: 5px 15px;
+    border-radius: 7px;
+    transition: background 0.2s ease;
+    &:hover {
+      background: rgb(174, 114, 2);
+      color: white;
+    }
+  }
+}

@@ -9,6 +9,7 @@ import { RootState } from "../../../store";
 import Spinner2 from "../../../UI/Spinner/Spinner2";
 import { useRouter } from "next/router";
 import ProfileImg from "../../../UI/ProfileImg/ProfileImg";
+import { webActions } from "../../../store/web-slice";
 
 const NavItem: React.FC<{
   item: string;
@@ -55,6 +56,7 @@ const NavItem: React.FC<{
               ? () => {
                   auth.signOut();
                   dispatch(loginActions.logout());
+                  dispatch(webActions.logout());
                   router.replace("/");
                 }
               : () => {

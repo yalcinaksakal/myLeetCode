@@ -18,6 +18,7 @@ export type UserStatistics = {
   easy: number;
   personal: number;
   total: number;
+  personalCounter: number;
 };
 
 export default PrblmItem;

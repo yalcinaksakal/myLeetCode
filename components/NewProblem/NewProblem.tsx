@@ -11,12 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { loginActions } from "../../store/login-slice";
 import { useRouter } from "next/router";
+import { webActions } from "../../store/web-slice";
 
 const NewProblem: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showTextarea, setShowTextarea] = useState(false);
   const [showErrMsg, setShowErrMsg] = useState(false);
-  const { hard, easy, medium, personal, total } = useSelector(
+  const { hard, easy, medium, personal, total, personalCounter } = useSelector(
     (state: RootState) => state.login
   );
   const router = useRouter();
@@ -37,6 +38,7 @@ const NewProblem: React.FC = () => {
       medium,
       total,
       personal,
+      personalCounter: personalCounter + 1,
     });
     setIsLoading(false);
     setShowErrMsg(false);
@@ -45,8 +47,16 @@ const NewProblem: React.FC = () => {
       return;
     }
     //update store
-    if (result.isUpdated)
+    if (result.isUpdated) {
       dispatch(loginActions.setStatistics(result.isUpdated));
+      dispatch(
+        webActions.add({
+          no: data.current.no,
+          name: data.current.name,
+          difficulty: data.current.difficulty,
+        })
+      );
+    }
     //route to editor
     router.push(`/editor?type=private&no=${data.current.no}`);
   };

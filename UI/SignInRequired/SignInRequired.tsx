@@ -10,7 +10,7 @@ const SignInRequired: React.FC = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <h3>Please Sign In to view this page</h3>
+      <h4>Please Sign In to view this page</h4>
       <div className={styles.buttons}>
         <button onClick={() => router.replace("/")}>Home page</button>
         <button

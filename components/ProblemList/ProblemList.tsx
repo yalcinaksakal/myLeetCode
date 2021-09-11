@@ -6,17 +6,25 @@ import Pagination from "../../UI/Pagination/Pagination";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
+import NoItems from "../../UI/NoItems/NoItems";
 
-const ProblemList: React.FC<{ list: PrblmItem[]; type: string }> = ({
-  list,
-  type,
-}) => {
+const ProblemList: React.FC<{ type: string }> = ({ type }) => {
   const router = useRouter();
   let { page } = router.query;
   const { pathname } = router;
 
-  const { openSolutionsLength } = useSelector((state: RootState) => state.web);
-  const { itemsPerPage } = useSelector((state: RootState) => state.login);
+  const {
+    openSolutionsLength,
+    privateSolutionsLength,
+    privateSearch,
+    openSearch,
+  } = useSelector((state: RootState) => state.web);
+  const { itemsPerPage, isLoggedIn } = useSelector(
+    (state: RootState) => state.login
+  );
+  const numOfItems =
+    type === "open" ? openSolutionsLength : privateSolutionsLength;
+  const numOfPages = Math.ceil(numOfItems / itemsPerPage);
   const currentPage =
     !page ||
     +page < 1 ||
@@ -24,6 +32,12 @@ const ProblemList: React.FC<{ list: PrblmItem[]; type: string }> = ({
     typeof +page !== "number"
       ? 1
       : +page;
+  const list = type === "open" ? openSearch : privateSearch;
+
+  const itemsInPage = list.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
 
   return list.length ? (
     <div className={styles.container}>
@@ -32,18 +46,20 @@ const ProblemList: React.FC<{ list: PrblmItem[]; type: string }> = ({
           index={0}
           item={{ no: "No", name: "TITLE", difficulty: "DIFFICULTY" }}
         />
-        {list.map((item, i) => (
+        {itemsInPage.map((item, i) => (
           <ListItem key={i} index={i + 1} item={item} />
         ))}
       </ul>
-      <Pagination
-        numberOfPages={Math.ceil(openSolutionsLength / itemsPerPage)}
-        currentPage={currentPage}
-        path={pathname}
-      />
+      {numOfPages > 1 && (
+        <Pagination
+          numberOfPages={numOfPages}
+          currentPage={currentPage}
+          path={pathname}
+        />
+      )}
     </div>
   ) : (
-    <h1>No items</h1>
+    isLoggedIn && <NoItems />
   );
 };
 

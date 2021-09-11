@@ -10,7 +10,17 @@ const MyProblemsPage: NextPage = () => {
   const { isLoggedIn } = useSelector((state: RootState) => state.login);
 
   return isLoggedIn ? (
-    <ProblemList list={[]} type="private" />
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        background: "whitesmoke",
+        padding: "5px 0",
+        margin: "10px 0",
+      }}
+    >
+      <ProblemList type="private" />
+    </div>
   ) : (
     <main className={styles.main}>
       <SignInRequired />
