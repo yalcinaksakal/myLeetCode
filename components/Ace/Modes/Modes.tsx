@@ -19,6 +19,7 @@ const Modes: React.FC<{
   const positionRight = type === "editor" ? "20px" : "auto";
   const positionBottom = type === "editor" ? "0" : "auto";
   const [isSaving, setIsSaving] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   return (
     <div
       className={styles.modes}
@@ -26,17 +27,19 @@ const Modes: React.FC<{
     >
       {isLoggedIn && showSaveButton && (
         <button
-          className={isSaving ? styles.saving : ""}
-          disabled={isSaving}
+          disabled={isSaving || isSaved}
           onClick={async () => {
             setIsSaving(true);
             await onSave();
+            setIsSaved(true);
+            setTimeout(() => setIsSaved(false), 1500);
             setIsSaving(false);
           }}
         >
-          {isSaving ? (
+          {isSaving || isSaved ? (
             <>
-              <span>Saving</span> <SpinnerDots />
+              <span>{isSaving ? "Saving" : "Saved"}</span>{" "}
+              {isSaving && <SpinnerDots />}
             </>
           ) : (
             "Save Code"

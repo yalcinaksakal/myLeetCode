@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import NoItems from "../../UI/NoItems/NoItems";
+import Filter from "../../UI/Filter/Filter";
 
 const ProblemList: React.FC<{ type: string }> = ({ type }) => {
   const router = useRouter();
@@ -18,9 +19,8 @@ const ProblemList: React.FC<{ type: string }> = ({ type }) => {
     privateSearch,
     openSearch,
   } = useSelector((state: RootState) => state.web);
-  const { itemsPerPage, isLoggedIn } = useSelector(
-    (state: RootState) => state.login
-  );
+  const { isLoggedIn } = useSelector((state: RootState) => state.login);
+  const { itemsPerPage } = useSelector((state: RootState) => state.web);
   const numOfItems =
     type === "open" ? openSolutionsLength : privateSolutionsLength;
   const numOfPages = Math.ceil(numOfItems / itemsPerPage);
@@ -41,6 +41,7 @@ const ProblemList: React.FC<{ type: string }> = ({ type }) => {
   return list.length ? (
     <div className={styles.container}>
       <ul className={styles.list}>
+        <Filter type={type} />
         <ListItem
           index={0}
           item={{ no: "No", name: "TITLE", difficulty: "DIFFICULTY" }}

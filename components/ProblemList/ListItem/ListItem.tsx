@@ -1,6 +1,7 @@
 import styles from "./ListItem.module.scss";
 import PrblmItem from "../../../models/prblmItem";
 import { useRouter } from "next/router";
+
 const ListItem: React.FC<{ item: PrblmItem; index: number; type: string }> = ({
   item,
   index,
@@ -17,7 +18,6 @@ const ListItem: React.FC<{ item: PrblmItem; index: number; type: string }> = ({
     "--rigtBorder": item.difficulty ? "1px solid gray" : "none",
   } as React.CSSProperties;
   const router = useRouter();
-  // http://localhost:3000/editor?type=open&no=1
 
   const url = `/editor/?type=${type}&no=${item.no}`;
   return (

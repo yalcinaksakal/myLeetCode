@@ -5,6 +5,7 @@ const initialState = {
   openSearch: [],
   privateSearch: [],
   privateSolutionsLength: 0,
+  itemsPerPage: 10,
 };
 
 const webSlice = createSlice({
@@ -13,10 +14,12 @@ const webSlice = createSlice({
   reducers: {
     setOpenSearchList(state, action) {
       state.openSearch = action.payload;
+      state.openSearch.sort((a, b) => a.no - b.no);
       state.openSolutionsLength = action.payload.length;
     },
     setPrivateSearchList(state, action) {
       state.privateSearch = action.payload;
+      state.privateSearch.sort((a, b) => a.no - b.no);
       state.privateSolutionsLength = action.payload.length;
     },
     logout(state) {
@@ -25,6 +28,7 @@ const webSlice = createSlice({
     },
     add(state, action) {
       state.privateSearch.push(action.payload);
+      state.privateSearch.sort((a, b) => a.no - b.no);
       state.privateSolutionsLength++;
     },
     delete(state, action) {
@@ -32,6 +36,9 @@ const webSlice = createSlice({
         el => el.no !== action.payload
       );
       state.privateSolutionsLength--;
+    },
+    setItemsPerPage(state, action) {
+      state.itemsPerPage = action.payload;
     },
   },
 });

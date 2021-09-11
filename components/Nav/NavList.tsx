@@ -5,6 +5,7 @@ import NavItem from "./NavItem/NavItem";
 import Image from "next/image";
 
 import { SVGS } from "../../svg/svg";
+import Search from "../Search/Search";
 
 const NavList: React.FC = () => {
   return (
@@ -15,7 +16,7 @@ const NavList: React.FC = () => {
           <span>YA&apos;s LeetCode Solutions</span>
         </div>
       </Link>
-      <input className={styles.search} type="search" placeholder="Search" />
+      <Search />
       <ul className={styles.list}>
         {Object.values(SVGS).map((listItem, index) => {
           return (

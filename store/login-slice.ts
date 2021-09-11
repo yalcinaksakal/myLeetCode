@@ -13,7 +13,6 @@ const initialState = {
   personal: 0,
   total: 0,
   loginClicked: false,
-  itemsPerPage: 10,
   personalCounter: 0,
 };
 
@@ -32,7 +31,6 @@ const loginSlice = createSlice({
         theme,
         personal,
         total,
-        itemsPerPage,
         personalCounter,
       } = action.payload;
       state.isLoggedIn = true;
@@ -47,7 +45,6 @@ const loginSlice = createSlice({
       state.personal = personal;
       state.total = total;
       state.loginClicked = false;
-      state.itemsPerPage = itemsPerPage;
       state.personalCounter = personalCounter;
     },
     logout(state) {
@@ -62,7 +59,6 @@ const loginSlice = createSlice({
       state.theme = "tomorrow";
       state.personal = 0;
       state.total = 0;
-      state.itemsPerPage = 10;
       state.personalCounter = 0;
     },
     setLoggingIn(state, action) {
@@ -86,9 +82,6 @@ const loginSlice = createSlice({
     },
     setLoginClicked(state, action) {
       state.loginClicked = action.payload;
-    },
-    setItemsPerPage(state, action) {
-      state.itemsPerPage = action.payload;
     },
   },
 });
