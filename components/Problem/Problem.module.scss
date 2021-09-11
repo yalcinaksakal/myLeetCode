@@ -12,9 +12,9 @@
 
   p {
     margin: 0;
-    background: var(--colorP);
+    background: var(--colorPBack);
     padding: 10px 40px 10px 20px;
-    color: rgb(20, 137, 255);
+    color: var(--colorPText);
     font-size: 14px;
     text-transform: capitalize;
     border-bottom: 5px solid rgb(192, 219, 247);

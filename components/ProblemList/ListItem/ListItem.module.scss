@@ -37,8 +37,10 @@
   padding: 3px 10px;
   font-weight: bolder;
   cursor: default;
+  pointer-events: none;
   display: flex;
   border-bottom: 1px dashed rgba(29, 101, 174, 0.612);
+  user-select: none;
   .no {
     width: 30px;
     font-size: 10px;

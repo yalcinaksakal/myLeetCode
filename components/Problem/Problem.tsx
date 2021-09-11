@@ -29,8 +29,12 @@ const Problem: React.FC<{ data: Prblm; isPrivate: boolean }> = ({
     "--colorTextareaBack":
       theme === "tomorrow_night_bright" ? "rgb(32, 32, 32)" : "whitesmoke",
     "--colorTextarea": theme === "tomorrow_night_bright" ? "white" : "black",
-    "--colorP":
+    "--colorPBack":
       theme === "tomorrow_night_bright" ? "black" : "rgb(211, 211, 211)",
+    "--colorPText":
+      theme === "tomorrow_night_bright"
+        ? "rgb(160, 206, 251)"
+        : "rgb(11, 92, 172)",
   } as React.CSSProperties;
 
   const deleteProblemHandler = () => {
