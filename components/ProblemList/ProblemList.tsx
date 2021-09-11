@@ -1,7 +1,6 @@
 import styles from "./ProblemList.module.scss";
 
 import ListItem from "./ListItem/ListItem";
-import PrblmItem from "../../models/prblmItem";
 import Pagination from "../../UI/Pagination/Pagination";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -45,9 +44,10 @@ const ProblemList: React.FC<{ type: string }> = ({ type }) => {
         <ListItem
           index={0}
           item={{ no: "No", name: "TITLE", difficulty: "DIFFICULTY" }}
+          type="heading"
         />
         {itemsInPage.map((item, i) => (
-          <ListItem key={i} index={i + 1} item={item} />
+          <ListItem key={i} index={i + 1} item={item} type={type} />
         ))}
       </ul>
       {numOfPages > 1 && (
