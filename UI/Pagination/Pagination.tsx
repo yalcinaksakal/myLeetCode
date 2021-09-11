@@ -1,19 +1,26 @@
 import styles from "./Pagination.module.scss";
 
 import pageArrConstructor from "../../helpers/pageArrConstructor";
-const Pagination: React.FC<{ numberOfPages: number; currentPage: number }> = ({
-  numberOfPages,
-  currentPage,
-}) => {
+import { useRouter } from "next/router";
+const Pagination: React.FC<{
+  numberOfPages: number;
+  currentPage: number;
+  path: string;
+}> = ({ numberOfPages, currentPage, path }) => {
   const pageArr = [...pageArrConstructor(numberOfPages, currentPage)];
-
+  const router = useRouter();
   const clickHandler = (page: string) => {
-    console.log("clicked:" + page);
+    router.push(`${path}?page=${page}`);
   };
 
   return (
     <div className={styles.pagination}>
-      <div className={styles.page}>{"<"}</div>
+      <div
+        className={`${styles.page}  ${currentPage > 1 ? "" : styles.disabled}`}
+        onClick={() => clickHandler("" + (currentPage - 1))}
+      >
+        {"<"}
+      </div>
       {pageArr.map((page, i) => (
         <div
           className={`${styles.page} ${
@@ -26,7 +33,14 @@ const Pagination: React.FC<{ numberOfPages: number; currentPage: number }> = ({
         </div>
       ))}
 
-      <div className={styles.page}>{">"}</div>
+      <div
+        className={`${styles.page}  ${
+          currentPage < numberOfPages ? "" : styles.disabled
+        }`}
+        onClick={() => clickHandler("" + (currentPage + 1))}
+      >
+        {">"}
+      </div>
     </div>
   );
 };

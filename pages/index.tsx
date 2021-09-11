@@ -41,28 +41,6 @@ const HomePage: NextPage = () => {
     },
     { no: 1, name: "Two Sum", difficulty: "Easy" },
     { no: 2, name: "Add Two Numbers", difficulty: "Medium" },
-    {
-      no: 3,
-      name: "Longest Substring Without Repeating Characters",
-      difficulty: "Medium",
-    },
-    {
-      no: 2000,
-      name: "Longest Substring Without Repeating Longest Substring Without Repeating Characters",
-      difficulty: "Difficult",
-    },
-    { no: 1, name: "Two Sum", difficulty: "Easy" },
-    { no: 2, name: "Add Two Numbers", difficulty: "Medium" },
-    {
-      no: 3,
-      name: "Longest Substring Without Repeating Characters",
-      difficulty: "Medium",
-    },
-    {
-      no: 2000,
-      name: "Longest Substring Without Repeating Longest Substring Without Repeating Characters",
-      difficulty: "Difficult",
-    },
   ];
   return (
     <div
@@ -74,7 +52,7 @@ const HomePage: NextPage = () => {
         margin: "10px 0",
       }}
     >
-      <ProblemList list={list} />
+      <ProblemList list={list} type="open" />
     </div>
   );
 };

@@ -50,14 +50,14 @@ const EditorPage: NextPage = () => {
     <Editor data={problemData} isPrivate={type === "private"} />
   ) : (
     <main className={styles.main}>
-      <p>
+      <div>
         <h1
           style={{ display: "inline-block", marginRight: "10px", color: "red" }}
         >
           404
         </h1>{" "}
         This page does not exist
-      </p>
+      </div>
     </main>
   );
 };

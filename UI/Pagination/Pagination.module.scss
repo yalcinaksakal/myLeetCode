@@ -3,7 +3,7 @@
   margin: 20px auto;
   display: flex;
   justify-content: center;
-  user-select: none;
+  // user-select: none;
   .page {
     width: fit-content;
     min-width: 15px;
@@ -21,6 +21,11 @@
       transform: scale(1.2);
       background: rgb(170, 213, 255);
       color: white;
+    }
+    &.active {
+      background: rgb(201, 234, 255);
+      color: rgb(5, 101, 198);
+      cursor: default;
     }
     &.disabled {
       cursor: default;

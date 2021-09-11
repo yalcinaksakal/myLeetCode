@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import loginReducer from "./login-slice";
+import webReducer from "./web-slice";
 
 const store = configureStore({
   reducer: {
     login: loginReducer,
+    web: webReducer,
   },
 });
 

@@ -12,6 +12,8 @@ import { loginActions } from "../store/login-slice";
 import { useRouter } from "next/router";
 import Spinner from "../UI/Spinner/Spinner";
 import Modal from "../UI/Modal/Modal";
+import { getOpenLength } from "../utils/paginationTest";
+import { webActions } from "../store/web-slice";
 
 function App({ Component, pageProps }: AppProps) {
   const dispatch = useDispatch();
@@ -57,6 +59,14 @@ function App({ Component, pageProps }: AppProps) {
     };
   }, [events]);
 
+  //webSlice
+  useEffect(() => {
+    const getData = async () => {
+      const length = await getOpenLength();
+      dispatch(webActions.setLength(length));
+    };
+    getData();
+  }, []);
   return (
     <>
       <Head>
