@@ -1,14 +1,21 @@
-dependencies
----redux
----@reduxjs/toolkit"
----firebase
----nextJs
----react
----react-ace
----sass
+Dependencies
+
+redux
+
+@reduxjs/toolkit"
+
+firebase
+
+nextJs
+
+react
+
+react-ace
+
+sass
 
 gitignore
----firebase.utils
+firebase.utils
 
 My solutions to LeetCode problems.
 
