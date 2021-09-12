@@ -49,7 +49,7 @@ const Ace: React.FC<{ data: string; isPrivate: boolean; no: string }> = ({
         mode={language}
         theme={theme}
         name="UNIQUE_ID_OF_DIV"
-        fontSize={14}
+        fontSize={13}
         focus
         //   enableBasicAutocompletion
         enableLiveAutocompletion

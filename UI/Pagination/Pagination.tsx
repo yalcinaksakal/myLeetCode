@@ -6,11 +6,14 @@ const Pagination: React.FC<{
   numberOfPages: number;
   currentPage: number;
   path: string;
-}> = ({ numberOfPages, currentPage, path }) => {
+  filter: string | string[];
+}> = ({ numberOfPages, currentPage, path, filter }) => {
   const pageArr = [...pageArrConstructor(numberOfPages, currentPage)];
   const router = useRouter();
   const clickHandler = (page: string) => {
-    router.push(`${path}?page=${page}`);
+    router.push(
+      `${path}?page=${page}${filter === "All" ? "" : `&filter=${filter}`}`
+    );
   };
 
   return (
