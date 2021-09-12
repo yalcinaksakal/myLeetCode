@@ -23,7 +23,7 @@ const webSlice = createSlice({
       state.privateSolutionsLength = action.payload.length;
     },
     logout(state) {
-      state.privateSearch.length = 0;
+      state.privateSearch = [];
       state.privateSolutionsLength = 0;
     },
     add(state, action) {

@@ -48,6 +48,9 @@ const Search = () => {
     return () => clearTimeout(inputTimer);
   }, [filter, lastSearchedText, searchHandler]);
 
+  useEffect(() => {
+    console.log("ok");
+  }, [privateSearch, searchHandler]);
   return (
     <div className={styles.search}>
       <input
@@ -55,6 +58,7 @@ const Search = () => {
         type="search"
         placeholder="Search"
         onMouseEnter={() => setShowResults(true)}
+        onMouseLeave={() => setShowResults(false)}
         onChange={e => {
           setIsSearching(true);
           const newFilter = e.currentTarget.value.trim().toLocaleLowerCase();
@@ -77,8 +81,10 @@ const Search = () => {
               {Object.entries(results).map(
                 el =>
                   el[1].length > 0 && (
-                    <div>
-                      <h6>{el[0] === "my" ? "Your problems" : "Others"}</h6>
+                    <div key={el[0]}>
+                      {results.my.length > 0 && (
+                        <h6>{el[0] === "my" ? "Your problems" : "Others"}</h6>
+                      )}
                       {el[1].map((rslt, i) => (
                         <p
                           onClick={() => {
@@ -97,7 +103,7 @@ const Search = () => {
               )}
               {!results.ya.length && !results.my.length && (
                 <div>
-                  <h6 style={{ color: "red" }}>No matching problems</h6>
+                  <h6 style={{ color: "red" }}>No matches</h6>
                 </div>
               )}
             </>
