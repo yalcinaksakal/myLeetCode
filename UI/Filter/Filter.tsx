@@ -13,9 +13,10 @@ const Filter: React.FC<{
     <div className={styles.container}>
       {arr.map((el, i) => (
         <span
+          key={i}
           className={selected === el ? styles.active : ""}
           onClick={() =>
-            router.push(`${path}?${el === "All" ? "" : `&filter=${el}`}`)
+            router.push(`${path}${el === "All" ? "" : `?filter=${el}`}`)
           }
         >
           {el}

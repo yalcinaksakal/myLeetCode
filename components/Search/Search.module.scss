@@ -21,8 +21,17 @@
       background: rgb(229, 247, 253);
     }
   }
+  .spinner {
+    width: 30px;
+    div {
+      & > * {
+        background-color: dodgerblue;
+      }
+    }
+  }
   .result {
     color: gray;
+    max-height: 50vh;
     position: absolute;
     border-top: 1px solid rgba(29, 101, 174, 0.612);
     top: 1.7rem;
@@ -31,6 +40,22 @@
     border-radius: 0 0px 5px 5px;
     box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
     font-size: 12px;
+    overflow: auto;
+
+    p {
+      color: black;
+      margin: 3px 0;
+      padding: 3px;
+      &:hover {
+        background: rgb(161, 175, 179);
+        color: white;
+        cursor: pointer;
+      }
+    }
+    h6 {
+      color: dodgerblue;
+      margin: 10px 0;
+    }
     @media (max-width: 600px) and (min-width: 500px) {
       width: calc(100vw - 150px);
     }

@@ -72,8 +72,10 @@ function App({ Component, pageProps }: AppProps) {
         const openList = await getOpenSearchList();
         dispatch(webActions.setOpenSearchList([...openList]));
       }
-
-      if (privateSolutionsLength || !isLoggedIn) return;
+      if (!isLoggedIn) {
+        dispatch(webActions.setPrivateSearchList([]));
+        return;
+      }
       const privateList = await getPrivateSearchList();
       dispatch(webActions.setPrivateSearchList([...privateList]));
     };

@@ -7,15 +7,12 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store";
 import NoItems from "../../UI/NoItems/NoItems";
 import Filter from "../../UI/Filter/Filter";
-import { useState } from "react";
 
 const ProblemList: React.FC<{ type: string }> = ({ type }) => {
   const router = useRouter();
   let { page, filter } = router.query;
   if (!filter) filter = "All";
   const { pathname } = router;
-
-  const [searchFilter, setSearchFilter] = useState("");
 
   const {
     openSolutionsLength,
@@ -79,7 +76,7 @@ const ProblemList: React.FC<{ type: string }> = ({ type }) => {
       )}
     </div>
   ) : (
-    <NoItems />
+    type === "private" && <NoItems />
   );
 };
 
